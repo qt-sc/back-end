@@ -12,13 +12,13 @@ package model
 
 type User struct {
  
-	Id int64 `json:"id,omitempty"`
+	Id int64 `json:"id,omitempty" gorm:"id;PRIMARY_KEY"`
 
-	Name string `json:"name,omitempty`
+	Name string `json:"name,omitempty" gorm:"name"`
 
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" gorm:"password"`
  
-	//Articles []Article `json:"articles,omitempty"`
+	Articles []Article `json:"articles,omitempty" gorm:"articles"`
  
-	Email string `json:"email,omitempty"`
+	Email string `json:"email,omitempty" gorm:"email"`
 }

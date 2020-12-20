@@ -21,6 +21,8 @@ type Article struct {
 	LikeNum int64 `json:"likeNum,omitempty" gorm:"like_num"`
  
 	Content string `json:"content,omitempty" gorm:"content"`
+
+	UserID int64 `json:"user_id" gorm:"user_id"`
  
 	Replies []Reply `json:"replies,omitempty" gorm:"replies"`
  
