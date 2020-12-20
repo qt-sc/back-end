@@ -12,17 +12,19 @@ package model
 
 type Article struct {
 
-	Id int64 `json:"id,omitempty"`
+	Id int64 `json:"id,omitempty" gorm:"id;PRIMARY_KEY"`
 
-	Title string `json:"title,omitempty"`
+	TargetID int64 `json:"target_id" gorm:"target_id"`
 
-	ReadNum int64 `json:"readNum,omitempty"`
+	Title string `json:"title,omitempty" gorm:"title"`
+
+	ReadNum int64 `json:"readNum,omitempty" gorm:"read_num"`
  
-	LikeNum int64 `json:"likeNum,omitempty"`
+	LikeNum int64 `json:"likeNum,omitempty" gorm:"like_num"`
  
-	Content string `json:"content,omitempty"`
+	Content string `json:"content,omitempty" gorm:"content"`
  
-	Replies []Reply `json:"replies,omitempty"`
+	//Replies []Reply `json:"replies,omitempty"`
  
-	Tags []Tag `json:"tags,omitempty"`
+	//Tags []Tag `json:"tags,omitempty"`
 }

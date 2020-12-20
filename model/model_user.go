@@ -18,7 +18,7 @@ type User struct {
 
 	Password string `json:"password,omitempty"`
  
-	Articles []Article `json:"articles,omitempty"`
+	//Articles []Article `json:"articles,omitempty"`
  
 	Email string `json:"email,omitempty"`
 }
