@@ -10,11 +10,11 @@ func (dbservice *DBService) GetAllArticle() ([]model.Article, error) {
 }
 
 //GetArticleByUser 获取用户所有文章
-func (dbservice *DBService) GetArticleByUser(id int64) (model.Article, error) {
+func (dbservice *DBService) GetArticleByUser(user_id int64) (model.Article, error) {
 	var articlelist []model.Article
 
 	var user model.User
-	if err := db.Table("user").Where("id = ?", id).First(&user).Error; err != nil {
+	if err := db.Table("user").Where("id = ?", user_id).First(&user).Error; err != nil {
 		return articlelist, err
 	}
 
