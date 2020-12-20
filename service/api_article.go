@@ -11,15 +11,42 @@
 package service
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
 )
 
-func GetArtical(w http.ResponseWriter, r *http.Request) {
+func GetArticles(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
+
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal("parse form error", err)
+	}
+	var formData int
+	err = json.NewDecoder(r.Body).Decode(&formData)
+	if err != nil {
+		log.Fatal("decode error", err)
+	}
+
+	articles, err := dbServer.GetArticles(formData)
+	if err != nil {
+		log.Fatal("Fail to get article by ID", err)
+	}
+
+	msg, err := json.Marshal(articles)
+	if err != nil {
+		log.Fatal("JSON Marshal fail.", err)
+	}
+	w.Write(msg)
 }
 
-func SendArtical(w http.ResponseWriter, r *http.Request) {
+func GetArticle(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func PostArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }
