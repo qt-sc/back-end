@@ -1,7 +1,9 @@
 package service
 
 import (
+	"fmt"
 	"github.com/qt-sc/server/database"
+	"github.com/qt-sc/server/script"
 )
 
 var dbServer database.DBServiceInterface
@@ -20,9 +22,19 @@ func init() {
 	//hubServer = noti.NewHubInstance()
 	//go hubServer.Run()
 
-	getLatestDaily()
+	getZhihuDaily()
 }
 
-func getLatestDaily()  {
-
+func getZhihuDaily()  {
+	ref := script.GetLatestEssay()
+	for _,x := range ref {
+		ok, err := dbServer.AddEssayFromZhihu(x)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		if !ok {
+			continue
+		}
+	}
 }
