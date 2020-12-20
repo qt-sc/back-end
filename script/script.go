@@ -47,7 +47,7 @@ type DailyReply struct {
 	Time    int    `json:"time"`
 }
 
-func getLatestEssay() []model.Article {
+func GetLatestEssay() []model.Article {
 	dailyIDList, err := getDailyList()
 	if err != nil {
 		fmt.Println("Fail to get Daily Essay List.")
