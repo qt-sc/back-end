@@ -24,9 +24,10 @@ func init(){
 		return
 	}
 
-	createTable();
+	db.SingularTable(true)
+	createTable()
 
-	return ;
+	return
 }
 
 func createTable() {
@@ -47,5 +48,5 @@ func createTable() {
 		db.Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(&model.Tag{})
 	}
 
-	return ;
+	return
 }
