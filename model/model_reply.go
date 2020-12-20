@@ -18,7 +18,7 @@ type Reply struct {
 
 	Id int64 `json:"id,omitempty" gorm:"id;PRIMARY_KEY"`
 
-	TargetID int64 `json:"target_id" gorm:"target_id"`
+	ArticleID int64 `json:"article_id" gorm:"article_id"`
 
 	LikeNum int64 `json:"likeNum,omitempty" gorm:"like_num"`
  

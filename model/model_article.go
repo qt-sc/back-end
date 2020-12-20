@@ -14,8 +14,6 @@ type Article struct {
 
 	Id int64 `json:"id,omitempty" gorm:"id;PRIMARY_KEY"`
 
-	TargetID int64 `json:"target_id" gorm:"target_id"`
-
 	Title string `json:"title,omitempty" gorm:"title"`
 
 	ReadNum int64 `json:"readNum,omitempty" gorm:"read_num"`
@@ -24,7 +22,7 @@ type Article struct {
  
 	Content string `json:"content,omitempty" gorm:"content"`
  
-	//Replies []Reply `json:"replies,omitempty"`
+	Replies []Reply `json:"replies,omitempty" gorm:"replies"`
  
-	//Tags []Tag `json:"tags,omitempty"`
+	Tags []Tag `json:"tags,omitempty" gorm:"tags;many2many:article_tags`
 }
