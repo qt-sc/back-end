@@ -1,6 +1,5 @@
 package  database
 
-
 //GetAllUser 获取所有用户
 func (dbservice *DBService) GetAllUser() ([]model.User, error) {
 	var userlist []model.User
@@ -17,4 +16,16 @@ func (dbservice *DBService) GetOneUser(name string) (model.User, error) {
 		return user, err
 	}
 	return user, nil
+}
+
+//DeleteOneUser 删除指定用户
+func (dbservice *DBService) DeleteOneUser(name string) (error) {
+	var user model.User
+	if err := db.Table("user").Where("name = ?", name).First(&user).Error; err != nil {
+		return err
+	}
+
+	db.Table("user").Delete(&user)
+
+	return nil
 }
