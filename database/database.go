@@ -6,9 +6,12 @@ import (
 )
 
 type DBServiceInterface interface {
-	GetAllPublicEssay() ([]model.Essay, error)
-	UserCreateEssay(essay model.Essay) (bool, error)
-	AddEssayFromZhihu(essay model.Essay) (bool, error)
+	GetAllPublicEssay() ([]model.Article, error)
+	UserCreateEssay(article model.Article) (bool, error)
+	AddEssayFromZhihu(article model.Article) (bool, error)
+
+	GetAllUser() ([]model.User, error)
+	GetOneUser() (model.User, error)
 }
 
 type DBService struct {}

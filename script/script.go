@@ -70,11 +70,11 @@ func GetLatestEssay() []model.Article {
 		}
 
 		for _, x := range reply {
-			mid := model.Reply{int64(x.Id), int64(x.Likes), time.Now(), x.Content, "/users/" + x.Author}
+			mid := model.Reply{int64(x.Id), int64(i), int64(x.Likes), time.Now(), x.Content, "/users/" + x.Author}
 			article.Replies = append(article.Replies, mid)
 		}
 
-		article.LikeNum, err = int64(getExtraById(id))
+		article.LikeNum, err = getExtraById(id)
 		if err != nil {
 			fmt.Println("Fail to get likenum.")
 			continue
@@ -170,7 +170,7 @@ func getReplyById(id int) ([]DailyReply, error) {
 	return rspComment.Comments, nil
 }
 
-func getExtraById(id int) (int, error) {
+func getExtraById(id int) (int64, error) {
 	rsp, err := http.Get(ZHIHU_URL + "/story-extra/" + strconv.Itoa(id))
 	if err != nil {
 		fmt.Println("get Zhihu Essay Extra Info has some error. Error info: ", err)
@@ -192,5 +192,5 @@ func getExtraById(id int) (int, error) {
 	}
 
 	//fmt.Println(rspEssay.Body)
-	return rspExtra.Popularity, nil
+	return int64(rspExtra.Popularity), nil
 }

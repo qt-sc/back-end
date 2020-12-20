@@ -11,12 +11,27 @@
 package service
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
 func GetUser(w http.ResponseWriter, r *http.Request) {
+	allUser, err := dbServer.GetAllUser()
+	if err != nil {
+		fmt.Println("Fail to get user.")
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+	msg, err := json.Marshal(allUser)
+	if err != nil {
+		fmt.Println("JSON Marshal fail.")
+		return
+	}
 	w.WriteHeader(http.StatusOK)
+	w.Write(msg)
 }
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
