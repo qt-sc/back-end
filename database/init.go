@@ -1,10 +1,11 @@
 package database
 
 import (
-	"github.com/jinzhu/gorm"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"log"
+	"github.com/jinzhu/gorm"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/qt-sc/server/model"
 )
 
 var db * gorm.DB
@@ -22,4 +23,29 @@ func init(){
 		log.Println(err)
 		return
 	}
+
+	createTable();
+
+	return ;
+}
+
+func createTable() {
+
+	if(!db.HasTable(&model.User{})) {
+		db.Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(&model.User{})
+	}
+
+	if(!db.HasTable(&model.Article{})) {
+		db.Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(&model.Article{})
+	}
+
+	if(!db.HasTable(&model.Reply{})) {
+		db.Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(&model.Reply{})
+	}
+
+	if(!db.HasTable(&model.Tag{})) {
+		db.Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(&model.Tag{})
+	}
+
+	return ;
 }
