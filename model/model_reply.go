@@ -16,14 +16,16 @@ import (
  
 type Reply struct {
 
-	Id int64 `json:"id,omitempty"`
+	Id int64 `json:"id,omitempty" gorm:"id;PRIMARY_KEY"`
+
+	TargetID int64 `json:"target_id" gorm:"target_id"`
+
+	LikeNum int64 `json:"likeNum,omitempty" gorm:"like_num"`
  
-	LikeNum int64 `json:"likeNum,omitempty"`
+	CreateTime time.Time `json:"createTime,omitempty" gorm:"create_time"`
  
-	CreateTime time.Time `json:"createTime,omitempty"`
+	Content string `json:"content,omitempty" gorm:"content"`
  
-	Content string `json:"content,omitempty"`
- 
-	AuthorUrl string `json:"author-url,omitempty"`
+	AuthorUrl string `json:"author-url,omitempty" gorm:"author_url"`
 }
  
