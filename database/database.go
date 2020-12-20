@@ -12,6 +12,7 @@ type DBServiceInterface interface {
 
 	GetAllUser() ([]model.User, error)
 	GetOneUser() (model.User, error)
+	GetArticles(int) ([]model.Article, error)
 }
 
 type DBService struct {}

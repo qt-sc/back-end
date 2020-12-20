@@ -17,17 +17,18 @@ import (
 )
 
 func GetUser(w http.ResponseWriter, r *http.Request) {
-	allUser, err := dbServer.GetAllUser()
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	alluser, err := dbServer.GetAllUser()
 	if err != nil {
 		fmt.Println("Fail to get user.")
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-
-	msg, err := json.Marshal(allUser)
+	msg, err := json.Marshal(alluser)
 	if err != nil {
 		fmt.Println("JSON Marshal fail.")
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 	w.WriteHeader(http.StatusOK)
