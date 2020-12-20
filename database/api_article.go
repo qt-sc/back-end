@@ -23,3 +23,19 @@ func (dbservice *DBService) GetArticleByUser(user_id int64) (model.Article, erro
 	}
 	return articlelist, nil
 }
+
+//GetArticleByTag 获取标签所有文章
+func (dbservice *DBService) GetArticleByTag(tag_name string) (model.Article, error) {
+	var articlelist []model.Article
+
+	var tag model.Tag
+	if err := db.Table("tag").Where("name = ?", tag_name).First(&tag).Error; err != nil {
+		return articlelist, err
+	}
+
+	//不知道能不能成功
+	if err := db.Model(&tag).Related(&articlelist, "Tags").Error; err != nil {
+		return articlelist, err
+	}
+	return articlelist, nil
+}
