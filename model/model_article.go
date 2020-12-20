@@ -16,9 +16,9 @@ type Article struct {
 
 	Title string `json:"title,omitempty"`
 
-	ReadNum int32 `json:"readNum,omitempty"`
+	ReadNum int64 `json:"readNum,omitempty"`
  
-	LikeNum int32 `json:"likeNum,omitempty"`
+	LikeNum int64 `json:"likeNum,omitempty"`
  
 	Content string `json:"content,omitempty"`
  

@@ -18,7 +18,7 @@ type Reply struct {
 
 	Id int64 `json:"id,omitempty"`
  
-	LikeNum int32 `json:"likeNum,omitempty"`
+	LikeNum int64 `json:"likeNum,omitempty"`
  
 	CreateTime time.Time `json:"createTime,omitempty"`
  
