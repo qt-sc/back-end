@@ -1,4 +1,4 @@
-package server
+package service
 
 import (
 	"github.com/qt-sc/server/lib"
