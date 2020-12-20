@@ -12,25 +12,23 @@ package service
 
 import (
 	"encoding/json"
+	"github.com/qt-sc/server/lib"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func GetArticles(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
-	err := r.ParseForm()
+	url := r.RequestURI
+	idstr := lib.GetFollowParameter(url, "users")
+	id, err := strconv.Atoi(idstr)
 	if err != nil {
-		log.Fatal("parse form error", err)
+		log.Fatal("string to int fail", err)
 	}
-	var formData int
-	err = json.NewDecoder(r.Body).Decode(&formData)
-	if err != nil {
-		log.Fatal("decode error", err)
-	}
-
-	articles, err := dbServer.GetArticles(formData)
+	articles, err := dbServer.GetArticleByUser(id)
 	if err != nil {
 		log.Fatal("Fail to get article by ID", err)
 	}
@@ -43,7 +41,25 @@ func GetArticles(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetArticle(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
 
+	url := r.RequestURI
+	idstr := lib.GetFollowParameter(url, "users")
+	id, err := strconv.Atoi(idstr)
+	if err != nil {
+		log.Fatal("string to int fail", err)
+	}
+	articles, err := dbServer.GetArticleByArticle(id)
+	if err != nil {
+		log.Fatal("Fail to get article by ID", err)
+	}
+
+	msg, err := json.Marshal(articles)
+	if err != nil {
+		log.Fatal("JSON Marshal fail.", err)
+	}
+	w.Write(msg)
 }
 
 func PostArticle(w http.ResponseWriter, r *http.Request) {
