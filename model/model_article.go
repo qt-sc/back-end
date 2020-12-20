@@ -22,8 +22,8 @@ type Article struct {
  
 	Content string `json:"content,omitempty" gorm:"content"`
 
-	UserID int64 `json:"user_id" gorm:"user_id"`
- 
+	UserID int64 `json:"user_id,omitempty" gorm:"user_id"`
+
 	Replies []Reply `json:"replies,omitempty" gorm:"replies"`
  
 	Tags []Tag `json:"tags,omitempty" gorm:"tags;many2many:article_tags`
