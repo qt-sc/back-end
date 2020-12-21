@@ -70,3 +70,13 @@ func (dbservice *DBService) DeleteArticle(article_id int) (bool, error) {
 	return true, nil
 
 }
+
+//UpadteArticle 更新文章
+func (dbservice *DBService) UpadteArticle(article model.Article) (bool, error) {
+
+	if err := db.Table("article").Save(&article).Error; err != nil {
+		return false, err
+	}
+	return true, nil
+
+}
