@@ -71,12 +71,35 @@ func (dbservice *DBService) DeleteArticle(article_id int) (bool, error) {
 
 }
 
-//UpadteArticle 更新文章
-func (dbservice *DBService) UpadteArticle(article model.Article) (bool, error) {
+//UpadteArticleLikeNum 更新文章点赞数
+func (dbservice *DBService) UpadteArticleLikeNum(article_id int, like_num_inc int) (bool, error) {
+
+	var article model.Article
+	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
+		return false, err
+	}
+
+	article.LikeNum += like_num_inc; 
 
 	if err := db.Table("article").Save(&article).Error; err != nil {
 		return false, err
 	}
 	return true, nil
 
+}
+
+//UpadteArticleContent 更新文章内容
+func (dbservice *DBService) UpadteArticleContent(article_id int, content string) (bool, error) {
+
+	var article model.Article
+	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
+		return false, err
+	}
+
+	article.Content = content; 
+
+	if err := db.Table("article").Save(&article).Error; err != nil {
+		return false, err
+	}
+	return true, nil
 }
