@@ -38,7 +38,7 @@ func GetArticle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal("string to int fail", err)
 	}
-	articles, err := dbServer.GetArticleByArticle(id)
+	articles, err := dbServer.GetArticleByArticle(int64(id))
 	if err != nil {
 		log.Fatal("Fail to get article by ID", err)
 	}
@@ -65,7 +65,7 @@ func GetArticles(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal("string to int fail", err)
 	}
-	articles, err := dbServer.GetArticleByUser(id)
+	articles, err := dbServer.GetArticleByUser(int64(id))
 	if err != nil {
 		log.Fatal("Fail to get article by ID", err)
 	}
