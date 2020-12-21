@@ -10,6 +10,7 @@
 package main
 
 import (
+	"github.com/qt-sc/server/middleware"
 	"log"
 	"net/http"
 
@@ -27,6 +28,7 @@ func main() {
 
 	router := route.NewRouter()
 
+	router.Use(middleware.Auth)
 	log.Fatal(http.ListenAndServe(":8080", router))
 
 }

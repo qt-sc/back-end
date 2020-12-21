@@ -1,5 +1,7 @@
 package  database
 
+import "github.com/qt-sc/server/model"
+
 //GetAllUser 获取所有用户
 func (dbservice *DBService) GetAllUser() ([]model.User, error) {
 	var userlist []model.User
