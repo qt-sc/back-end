@@ -35,7 +35,7 @@ func (dbservice *DBService) UpadteReplyLikeNum(reply_id int64, like_num_inc int6
 		return false, err
 	}
 
-	like_num = reply.LikeNum + like_num_inc;
+	like_num := reply.LikeNum + like_num_inc;
 
 	if err := db.Table("reply").Model(&reply).Update("LikeNum", like_num).Error; err != nil {
 		return false, err
