@@ -23,6 +23,7 @@ type DBServiceInterface interface {
 	UpadteArticleLikeNum(int64, int64) (bool, error)
 	UpadteArticleContent(int64, string) (bool, error)
 
+	GetReply(int64) (model.Reply, error)
 	GetReplyByArticle(int64) ([]model.Reply, error)
 	CreateReply(model.Reply) (bool, error)
 	UpadteReplyLikeNum(int64, int64) (bool, error)
