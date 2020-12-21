@@ -2,7 +2,7 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
+	"github.com/qt-sc/server/model"
 
 	"github.com/qt-sc/server/conf"
 	"github.com/qt-sc/server/lib"
@@ -148,7 +148,7 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Set-Cookie", cookie2.String())
 	w.Header().Add("Set-Cookie", cookie3.String())
 
-	// TODO: 登录除鉴权相关的逻辑
+	// TODO: 登录除鉴权相关的逻辑，也许是没有
 }
 
 func UserLogout(w http.ResponseWriter, r *http.Request) {
@@ -163,6 +163,24 @@ func UserLogout(w http.ResponseWriter, r *http.Request) {
 func UserSignup(w http.ResponseWriter, r *http.Request) {
 	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	//w.WriteHeader(http.StatusOK)
+	r.ParseForm()
+	id := r.PostFormValue("id")
+	userId, err := strconv.Atoi(id)
+	if err != nil {
+		log.Println("注册失败")
+		return
+	}
+	user := model.User{
+		Id:       int64(userId),
+		Name:     r.PostFormValue("name"),
+		Password: r.PostFormValue("password"),
+		Articles: nil,
+		Email:    r.PostFormValue("email"),
+		Url:      r.PostFormValue("url"),
+	}
 
+	dbServer.CreateUser(user)
+
+	w.WriteHeader(http.StatusOK)
 
 }
