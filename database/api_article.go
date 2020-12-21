@@ -10,7 +10,7 @@ func (dbservice *DBService) GetAllArticle() ([]model.Article, error) {
 }
 
 //GetArticleByUser 获取用户所有文章
-func (dbservice *DBService) GetArticleByUser(user_id int64) (model.Article, error) {
+func (dbservice *DBService) GetArticleByUser(user_id int) (model.Article, error) {
 	var articlelist []model.Article
 
 	var user model.User
@@ -38,4 +38,15 @@ func (dbservice *DBService) GetArticleByTag(tag_name string) (model.Article, err
 		return articlelist, err
 	}
 	return articlelist, nil
+}
+
+//GetArticleByArticle 获取指定文章
+func (dbservice *DBService) GetArticleByArticle(article_id int) (model.Article, error) {
+
+	var article model.Article
+	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
+		return article, err
+	}
+	return article, nil
+
 }
