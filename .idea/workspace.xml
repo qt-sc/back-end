@@ -20,10 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0359ad0d-30fa-439a-b79d-7abe0b873dde" name="默认的" comment="">
+<<<<<<< HEAD
+=======
+      <change afterPath="$PROJECT_DIR$/middleware/auth.go" afterDir="false" />
+>>>>>>> a39ae1d4e010873ac13e9c3f7d17b0a50bd10d67
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/api_article.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/api_article.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/api_tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/api_tag.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/api_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/api_user.go" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/route/routers.go" beforeDir="false" afterPath="$PROJECT_DIR$/route/routers.go" afterDir="false" />
@@ -32,6 +37,11 @@
       <change beforePath="$PROJECT_DIR$/service/api_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api_user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/server.go" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/routers.go" beforeDir="false" afterPath="$PROJECT_DIR$/route/routers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/api_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api_user.go" afterDir="false" />
+>>>>>>> a39ae1d4e010873ac13e9c3f7d17b0a50bd10d67
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +59,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
   <component name="ProjectId" id="1luHdtawCeU0rTNCjT4sdCbhewh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -57,10 +70,19 @@
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../gitee.com/nonli/cloudgo" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+>>>>>>> a39ae1d4e010873ac13e9c3f7d17b0a50bd10d67
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -68,6 +90,7 @@
     </key>
   </component>
   <component name="RunManager">
+<<<<<<< HEAD
     <configuration name="go build github.com/qt-sc/server" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="server" />
       <working_directory value="$PROJECT_DIR$" />
@@ -80,20 +103,43 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+=======
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="github.com/qt-sc/server" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+>>>>>>> a39ae1d4e010873ac13e9c3f7d17b0a50bd10d67
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>https://goproxy.io,direct</proxy>
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="146" width="1092" height="849" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608541230950">
@@ -107,6 +153,34 @@
     <state x="295" y="203" width="1597" height="686" key="dock-window-1" timestamp="1608480945106">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
+<<<<<<< HEAD
     <state x="295" y="203" width="1597" height="686" key="dock-window-1/0.34.1920.1046@0.34.1920.1046" timestamp="1608480945106" />
+=======
+    <state x="690" y="257" width="530" height="598" key="FileChooserDialogImpl/0.34.1920.1046@0.34.1920.1046" timestamp="1608441370376" />
+    <state width="1866" height="273" key="GridCell.Tab.0.bottom" timestamp="1608510055921">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1866" height="273" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1608510055921" />
+    <state width="1866" height="273" key="GridCell.Tab.0.center" timestamp="1608510055919">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1866" height="273" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1608510055919" />
+    <state width="1866" height="273" key="GridCell.Tab.0.left" timestamp="1608510055917">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1866" height="273" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1608510055917" />
+    <state width="1866" height="273" key="GridCell.Tab.0.right" timestamp="1608510055920">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1866" height="273" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1608510055920" />
+    <state x="441" y="188" key="SettingsEditor" timestamp="1608509819509">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="441" y="188" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1608509819509" />
+    <state x="265" y="231" width="696" height="644" key="find.popup" timestamp="1608514208959">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="265" y="231" width="696" height="644" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1608514208959" />
+>>>>>>> a39ae1d4e010873ac13e9c3f7d17b0a50bd10d67
   </component>
 </project>
