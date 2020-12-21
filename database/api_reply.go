@@ -14,7 +14,7 @@ func (dbservice *DBService) CreateReply(reply model.Reply) (bool, error) {
 
 //GetReplyByArticle 获取文章所有评论
 func (dbservice *DBService) GetReplyByArticle(article_id int64) ([]model.Reply, error) {
-	var replylist []model.Tag
+	var replylist []model.Reply
 
 	var article model.Article
 	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
