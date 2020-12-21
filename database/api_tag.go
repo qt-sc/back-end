@@ -2,8 +2,6 @@ package database
 
 import "github.com/qt-sc/server/model"
 
-import "github.com/qt-sc/server/model"
-
 //GetAllTag 获取所有标签
 func (dbservice *DBService) GetAllTag() ([]model.Tag, error) {
 	var taglist []model.Tag

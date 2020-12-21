@@ -31,14 +31,12 @@ func (dbservice *DBService) CreateUser(user model.User) (bool, error) {
 }
 
 //DeleteUser 删除用户
-func (dbservice *DBService) DeleteUser(user_id int64) (error) {
+func (dbservice *DBService) DeleteUser(user_id int64) (bool, error) {
 
 	if err := db.Table("user").Delete(&model.User{}, user_id).Error; err != nil {
 		return false, err
 	}
 	return true, nil
-
-	return nil
 }
 
 

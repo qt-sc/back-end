@@ -81,7 +81,7 @@ func (dbservice *DBService) UpadteArticleLikeNum(article_id int64, like_num_inc 
 		return false, err
 	}
 
-	like_num = article.LikeNum + like_num_inc;
+	like_num := article.LikeNum + like_num_inc;
 
 	if err := db.Table("article").Model(&article).Update("LikeNum", like_num).Error; err != nil {
 		return false, err
