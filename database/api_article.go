@@ -79,9 +79,9 @@ func (dbservice *DBService) UpadteArticleLikeNum(article_id int, like_num_inc in
 		return false, err
 	}
 
-	article.LikeNum += like_num_inc; 
+	like_num = article.LikeNum + like_num_inc;
 
-	if err := db.Table("article").Save(&article).Error; err != nil {
+	if err := db.Table("article").Model(&article).Update("LikeNum", like_num).Error; err != nil {
 		return false, err
 	}
 	return true, nil
@@ -96,9 +96,7 @@ func (dbservice *DBService) UpadteArticleContent(article_id int, content string)
 		return false, err
 	}
 
-	article.Content = content; 
-
-	if err := db.Table("article").Save(&article).Error; err != nil {
+	if err := db.Table("article").Model(&article).Update("Content", content).Error; err != nil {
 		return false, err
 	}
 	return true, nil
