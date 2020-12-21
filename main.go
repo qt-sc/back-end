@@ -10,6 +10,7 @@
 package main
 
 import (
+	"github.com/qt-sc/server/middleware"
 	"log"
 	"net/http"
 
@@ -18,15 +19,13 @@ import (
 
 const PORT string = "8080"
 
-var ZHIHU_URL string = "http://news-at.zhihu.com/api/4/news"
-var LA string = "/latest"
-
 func main() {
 
 	log.Printf("Server started")
 
 	router := route.NewRouter()
 
+	router.Use(middleware.Auth)
 	log.Fatal(http.ListenAndServe(":8080", router))
 
 }

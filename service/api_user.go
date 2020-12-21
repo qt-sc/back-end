@@ -11,7 +11,16 @@
 package service
 
 import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/qt-sc/server/conf"
+	"github.com/qt-sc/server/lib"
+	"log"
+
 	"net/http"
+	"strconv"
+	"time"
 )
 
 func DeleteUser(w http.ResponseWriter, r *http.Request) {
@@ -59,16 +68,67 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+	// 登录相关的鉴权逻辑
+	r.ParseForm()
+	id := r.PostFormValue("id")
+	username := r.PostFormValue("name")
+	userId, err := strconv.Atoi(id)
+	if err != nil {
+		log.Printf("类型转换错误")
+	}
+
+	userTemp := lib.UserInfo{
+		Username: username,
+		ID:       uint64(userId),
+	}
+
+	token, err := lib.CreateToken(&userTemp)
+
+	if err != nil {
+		log.Println("token生成错误")
+	}
+
+	conf.Redis.Set(token, userId, time.Hour*24)
+
+	cookie1 := http.Cookie{
+		Name: "username",
+		Value:username,
+		Path:"/",
+		Expires:time.Now().AddDate(0, 0, 1),
+	}
+
+	cookie2 := http.Cookie{
+		Name:       "id",
+		Value:      id,
+		Path:"/",
+		Expires:    time.Now().AddDate(0, 0, 1),
+	}
+
+	cookie3 := http.Cookie{
+		Name:"token",
+		Value:token,
+		Path:"/",
+		Expires:    time.Now().AddDate(0, 0, 1),
+	}
+
+	w.Header().Set("Set-Cookie", cookie1.String())
+	w.Header().Add("Set-Cookie", cookie2.String())
+	w.Header().Add("Set-Cookie", cookie3.String())
+
+	// TODO: 登录除鉴权相关的逻辑
 }
 
 func UserLogout(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	//w.WriteHeader(http.StatusOK)
 }
 
 func UserSignup(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	//w.WriteHeader(http.StatusOK)
+
+	// 登出只要清除cookie即可
+	http.SetCookie(w, &http.Cookie{Name:"username", Value:"",MaxAge:-1,Path:"/"})
+	http.SetCookie(w, &http.Cookie{Name:"id", Value:"",MaxAge:-1,Path:"/"})
+	http.SetCookie(w, &http.Cookie{Name:"token", Value:"",MaxAge:-1,Path:"/"})
 }

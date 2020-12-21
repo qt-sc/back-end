@@ -1,4 +1,8 @@
-package  database
+package database
+
+import "github.com/qt-sc/server/model"
+
+import "github.com/qt-sc/server/model"
 
 //GetAllTag 获取所有标签
 func (dbservice *DBService) GetAllTag() ([]model.Tag, error) {
@@ -10,11 +14,11 @@ func (dbservice *DBService) GetAllTag() ([]model.Tag, error) {
 }
 
 //GetTagByArticle 获取文章所有标签
-func (dbservice *DBService) GetTagByArticle(article_id int64) (model.Tag, error) {
+func (dbservice *DBService) GetTagByArticle(article_id int64) ([]model.Tag, error) {
 	var taglist []model.Tag
 
 	var article model.Article
-	if err := db.Table("article").Where("id = ?", atricle_id).First(&article).Error; err != nil {
+	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
 		return taglist, err
 	}
 
