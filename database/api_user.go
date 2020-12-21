@@ -18,14 +18,25 @@ func (dbservice *DBService) GetOneUser(name string) (model.User, error) {
 	return user, nil
 }
 
-//DeleteOneUser 删除指定用户
-func (dbservice *DBService) DeleteOneUser(name string) (error) {
-	var user model.User
-	if err := db.Table("user").Where("name = ?", name).First(&user).Error; err != nil {
-		return err
+//CreateUser 创建用户
+func (dbservice *DBService) CreateUser(user model.User) (bool, error) {
+	
+	if err := db.Table("user").Create(&user).Error; err != nil {
+		return false, err
 	}
 
-	db.Table("user").Delete(&user)
+	return true, nil
+}
+
+//DeleteUser 删除用户
+func (dbservice *DBService) DeleteUser(user_id int64) (error) {
+
+	if err := db.Table("user").Delete(&model.User{}, user_id).Error; err != nil {
+		return false, err
+	}
+	return true, nil
 
 	return nil
 }
+
+
