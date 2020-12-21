@@ -12,6 +12,15 @@ func (dbservice *DBService) CreateReply(reply model.Reply) (bool, error) {
 	return true, nil
 }
 
+//GetReply 获取指定评论
+func (dbservice *DBService) GetReply(reply_id int64) (model.Reply, error) {
+	var reply model.Reply
+	if err := db.Table("reply").Where("id = ?", reply_id).First(&reply).Error; err != nil {
+		return reply, err
+	}
+	return reply, nil
+}
+
 //GetReplyByArticle 获取文章所有评论
 func (dbservice *DBService) GetReplyByArticle(article_id int64) ([]model.Reply, error) {
 	var replylist []model.Reply
