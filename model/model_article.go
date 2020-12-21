@@ -20,7 +20,7 @@ type Article struct {
  
 	LikeNum int64 `json:"likeNum,omitempty" gorm:"like_num"`
  
-	Content string `json:"content,omitempty" gorm:"content"`
+	Content string `json:"content,omitempty" gorm:"type:text;content"`
 
 	UserID int64 `json:"user_id,omitempty" gorm:"user_id"`
 
