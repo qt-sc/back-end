@@ -13,13 +13,13 @@ type DBServiceInterface interface {
 	GetOneUser(name string) (model.User, error)
 
 	GetAllArticle() ([]model.Article, error)
-	GetArticleByUser(int) ([]model.Article, error)
+	GetArticleByUser(int64) ([]model.Article, error)
 	GetArticleByTag(string) ([]model.Article, error)
-	GetArticleByArticle(int) (model.Article, error)
+	GetArticleByArticle(int64) (model.Article, error)
 	CreateArticle(model.Article) (bool, error)
-	DeleteArticle(int) (bool, error)
-	UpadteArticleLikeNum(int, int) (bool, error)
-	UpadteArticleContent(int, string) (bool, error)
+	DeleteArticle(int64) (bool, error)
+	UpadteArticleLikeNum(int64, int64) (bool, error)
+	UpadteArticleContent(int64, string) (bool, error)
 }
 
 type DBService struct {}

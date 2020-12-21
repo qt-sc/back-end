@@ -12,7 +12,7 @@ func (dbservice *DBService) GetAllArticle() ([]model.Article, error) {
 }
 
 //GetArticleByUser 获取用户所有文章
-func (dbservice *DBService) GetArticleByUser(user_id int) ([]model.Article, error) {
+func (dbservice *DBService) GetArticleByUser(user_id int64) ([]model.Article, error) {
 	var articlelist []model.Article
 
 	var user model.User
@@ -43,7 +43,7 @@ func (dbservice *DBService) GetArticleByTag(tag_name string) ([]model.Article, e
 }
 
 //GetArticleByArticle 获取指定文章
-func (dbservice *DBService) GetArticleByArticle(article_id int) (model.Article, error) {
+func (dbservice *DBService) GetArticleByArticle(article_id int64) (model.Article, error) {
 
 	var article model.Article
 	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
@@ -64,7 +64,7 @@ func (dbservice *DBService) CreateArticle(article model.Article) (bool, error) {
 }
 
 //DeleteArticle 删除文章
-func (dbservice *DBService) DeleteArticle(article_id int) (bool, error) {
+func (dbservice *DBService) DeleteArticle(article_id int64) (bool, error) {
 
 	if err := db.Table("article").Delete(&model.Article{}, article_id).Error; err != nil {
 		return false, err
@@ -74,7 +74,7 @@ func (dbservice *DBService) DeleteArticle(article_id int) (bool, error) {
 }
 
 //UpadteArticleLikeNum 更新文章点赞数
-func (dbservice *DBService) UpadteArticleLikeNum(article_id int, like_num_inc int) (bool, error) {
+func (dbservice *DBService) UpadteArticleLikeNum(article_id int64, like_num_inc int64) (bool, error) {
 
 	var article model.Article
 	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
@@ -91,7 +91,7 @@ func (dbservice *DBService) UpadteArticleLikeNum(article_id int, like_num_inc in
 }
 
 //UpadteArticleContent 更新文章内容
-func (dbservice *DBService) UpadteArticleContent(article_id int, content string) (bool, error) {
+func (dbservice *DBService) UpadteArticleContent(article_id int64, content string) (bool, error) {
 
 	var article model.Article
 	if err := db.Table("article").Where("id = ?", article_id).First(&article).Error; err != nil {
