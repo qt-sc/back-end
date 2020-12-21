@@ -101,10 +101,22 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
-	// 登录相关的鉴权逻辑
+	// TODO：登录相关的非鉴权逻辑
 	r.ParseForm()
 	id := r.PostFormValue("id")
 	username := r.PostFormValue("name")
+	user, err := dbServer.GetOneUser(username)
+	if err != nil {
+		log.Println("获取用户失败")
+		return
+	}
+	password := r.PostFormValue("password")
+	if password != user.Password {
+		log.Println("密码错误，登录失败")
+		return
+	}
+
+	// TODO： 登录相关的鉴权逻辑
 	userId, err := strconv.Atoi(id)
 	if err != nil {
 		log.Printf("类型转换错误")
@@ -148,7 +160,6 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Set-Cookie", cookie2.String())
 	w.Header().Add("Set-Cookie", cookie3.String())
 
-	// TODO: 登录除鉴权相关的逻辑，也许是没有
 }
 
 func UserLogout(w http.ResponseWriter, r *http.Request) {
@@ -182,5 +193,6 @@ func UserSignup(w http.ResponseWriter, r *http.Request) {
 	dbServer.CreateUser(user)
 
 	w.WriteHeader(http.StatusOK)
+
 
 }
