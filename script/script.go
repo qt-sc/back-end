@@ -3,6 +3,7 @@ package script
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/qt-sc/server/lib"
 	"github.com/qt-sc/server/model"
 	"io/ioutil"
 	"net/http"
@@ -140,6 +141,9 @@ func getEssayById(id int) (string, string, error) {
 		fmt.Println("get Zhihu Essay has some error. Error info: ", err)
 		return "", "", err
 	}
+
+	rspEssay.Title = lib.RemoveNonBmpUnicode(rspEssay.Title)
+	rspEssay.Body = lib.RemoveNonBmpUnicode(rspEssay.Body)
 
 	//fmt.Println(rspEssay.Body)
 	return rspEssay.Title, rspEssay.Body, nil
