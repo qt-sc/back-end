@@ -50,3 +50,23 @@ func (dbservice *DBService) GetArticleByArticle(article_id int) (model.Article, 
 	return article, nil
 
 }
+
+//CreateArticle 创建文章
+func (dbservice *DBService) CreateArticle(article model.Article) (bool, error) {
+
+	if err := db.Table("article").Create(article).Error; err != nil {
+		return false, err
+	}
+	return true, nil
+
+}
+
+//DeleteArticle 删除文章
+func (dbservice *DBService) DeleteArticle(article_id int) (bool, error) {
+
+	if err := db.Table("article").Delete(&model.Article{}, article_id).Error; err != nil {
+		return false, err
+	}
+	return true, nil
+
+}
