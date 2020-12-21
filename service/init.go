@@ -27,14 +27,14 @@ func init() {
 
 func getZhihuDaily()  {
 	ref := script.GetLatestEssay()
-	for _,x := range ref {
-		ok, err := dbServer.AddEssayFromZhihu(x)
+	//for _,x := range ref {
+		ok, err := dbServer.CreateArticle(ref[0])
 		if err != nil {
 			fmt.Println(err)
-			continue
+			//continue
 		}
 		if !ok {
-			continue
+			//continue
 		}
-	}
+	//}
 }

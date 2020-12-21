@@ -19,7 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0359ad0d-30fa-439a-b79d-7abe0b873dde" name="默认的" comment="" />
+    <list default="true" id="0359ad0d-30fa-439a-b79d-7abe0b873dde" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/api_article.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/api_article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/api_tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/api_tag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/api_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/api_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route/routers.go" beforeDir="false" afterPath="$PROJECT_DIR$/route/routers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/api_article.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api_article.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/api_reply.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api_reply.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/api_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/server.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,12 +60,24 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../gitee.com/nonli/cloudgo" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/script" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build github.com/qt-sc/server" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+      <module name="server" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="DIRECTORY" />
+      <filePath value="$PROJECT_DIR$" />
+      <package value="github.com/qt-sc/server" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -71,9 +96,17 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="257" width="530" height="598" key="FileChooserDialogImpl" timestamp="1608441370376">
+    <state x="414" y="146" width="1092" height="849" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608541230950">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state x="690" y="257" width="530" height="598" key="FileChooserDialogImpl/0.34.1920.1046@0.34.1920.1046" timestamp="1608441370376" />
+    <state x="414" y="146" width="1092" height="849" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.34.1920.1046@0.34.1920.1046" timestamp="1608541230950" />
+    <state x="690" y="257" width="530" height="598" key="FileChooserDialogImpl" timestamp="1608474093576">
+      <screen x="0" y="34" width="1920" height="1046" />
+    </state>
+    <state x="690" y="257" width="530" height="598" key="FileChooserDialogImpl/0.34.1920.1046@0.34.1920.1046" timestamp="1608474093576" />
+    <state x="295" y="203" width="1597" height="686" key="dock-window-1" timestamp="1608480945106">
+      <screen x="0" y="34" width="1920" height="1046" />
+    </state>
+    <state x="295" y="203" width="1597" height="686" key="dock-window-1/0.34.1920.1046@0.34.1920.1046" timestamp="1608480945106" />
   </component>
 </project>

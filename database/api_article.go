@@ -1,16 +1,18 @@
 package  database
 
+import "github.com/qt-sc/server/model"
+
 //GetAllArticle 获取所有文章
 func (dbservice *DBService) GetAllArticle() ([]model.Article, error) {
 	var articlelist []model.Article
-	if err := db.Table("article").Order("create_time desc").Find(&articlelist).Error; err != nil {
+	if err := db.Table("article").Find(&articlelist).Error; err != nil {
 		return articlelist, err
 	}
 	return articlelist, nil
 }
 
 //GetArticleByUser 获取用户所有文章
-func (dbservice *DBService) GetArticleByUser(user_id int) (model.Article, error) {
+func (dbservice *DBService) GetArticleByUser(user_id int) ([]model.Article, error) {
 	var articlelist []model.Article
 
 	var user model.User
@@ -25,7 +27,7 @@ func (dbservice *DBService) GetArticleByUser(user_id int) (model.Article, error)
 }
 
 //GetArticleByTag 获取标签所有文章
-func (dbservice *DBService) GetArticleByTag(tag_name string) (model.Article, error) {
+func (dbservice *DBService) GetArticleByTag(tag_name string) ([]model.Article, error) {
 	var articlelist []model.Article
 
 	var tag model.Tag
@@ -79,7 +81,7 @@ func (dbservice *DBService) UpadteArticleLikeNum(article_id int, like_num_inc in
 		return false, err
 	}
 
-	article.LikeNum += like_num_inc; 
+	article.LikeNum += int64(like_num_inc);
 
 	if err := db.Table("article").Save(&article).Error; err != nil {
 		return false, err
