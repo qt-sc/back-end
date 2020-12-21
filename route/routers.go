@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
+	"github.com/qt-sc/server/service"
 )
 
 type Route struct {
@@ -50,181 +51,181 @@ var routes = Routes{
 		"CreateArticle",
 		strings.ToUpper("Post"),
 		"/users/{userid}/articles/new",
-		CreateArticle,
+		service.CreateArticle,
 	},
 
 	Route{
 		"DeleteArticle",
 		strings.ToUpper("Delete"),
 		"/users/{userid}/articles/{articleid}",
-		DeleteArticle,
+		service.DeleteArticle,
 	},
 
 	Route{
 		"GetArticle",
 		strings.ToUpper("Get"),
 		"/api/users/{userid}/articles/{articleid}",
-		GetArticle,
+		service.GetArticle,
 	},
 
 	Route{
 		"GetArticlePage",
 		strings.ToUpper("Get"),
 		"/users/{userid}/articles/{articleid}",
-		GetArticlePage,
+		service.GetArticlePage,
 	},
 
 	Route{
 		"GetArticles",
 		strings.ToUpper("Get"),
 		"/api/users/{userid}/articles",
-		GetArticles,
+		service.GetArticles,
 	},
 
 	Route{
 		"GetArticlesPage",
 		strings.ToUpper("Get"),
 		"/users/{userid}/articles",
-		GetArticlesPage,
+		service.GetArticlesPage,
 	},
 
 	Route{
 		"GetCreateArticlePage",
 		strings.ToUpper("Get"),
 		"/users/{userid}/articles/new",
-		GetCreateArticlePage,
+		service.GetCreateArticlePage,
 	},
 
 	Route{
 		"LikeArticle",
 		strings.ToUpper("Put"),
 		"/users/{userid}/articles/{articleid}/like",
-		LikeArticle,
+		service.LikeArticle,
 	},
 
 	Route{
 		"UpdateArticle",
 		strings.ToUpper("Put"),
 		"/users/{userid}/articles/{articleid}",
-		UpdateArticle,
+		service.UpdateArticle,
 	},
 
 	Route{
 		"CreateReply",
 		strings.ToUpper("Post"),
 		"/users/{userid}/articles/{articleid}/replies/new",
-		CreateReply,
+		service.CreateReply,
 	},
 
 	Route{
 		"GetReplies",
 		strings.ToUpper("Get"),
 		"/api/users/{userid}/articles/{articleid}/replies",
-		GetReplies,
+		service.GetReplies,
 	},
 
 	Route{
 		"GetReply",
 		strings.ToUpper("Get"),
 		"/api/users/{userid}/articles/{articleid}/replies/{replyid}",
-		GetReply,
+		service.GetReply,
 	},
 
 	Route{
 		"LikeReply",
 		strings.ToUpper("Put"),
 		"/users/{userid}/articles/{articleid}/replies/{replyid}/like",
-		LikeReply,
+		service.LikeReply,
 	},
 
 	Route{
 		"GetArticlesPageByTag",
 		strings.ToUpper("Get"),
 		"/tags/{tagname}",
-		GetArticlesPageByTag,
+		service.GetArticlesPageByTag,
 	},
 
 	Route{
 		"GetTags",
 		strings.ToUpper("Get"),
 		"/api/tags",
-		GetTags,
+		service.GetTags,
 	},
 
 	Route{
 		"SearchArticlesByTag",
 		strings.ToUpper("Get"),
 		"/api/tags/{tagname}/articles",
-		SearchArticlesByTag,
+		service.SearchArticlesByTag,
 	},
 
 	Route{
 		"ApiGet",
 		strings.ToUpper("Get"),
 		"/api",
-		ApiGet,
+		service.ApiGet,
 	},
 
 	Route{
 		"DeleteUser",
 		strings.ToUpper("Delete"),
 		"/users/{userid}",
-		DeleteUser,
+		service.DeleteUser,
 	},
 
 	Route{
 		"GetSignupPage",
 		strings.ToUpper("Get"),
 		"/users/signup",
-		GetSignupPage,
+		service.GetSignupPage,
 	},
 
 	Route{
 		"GetUserInfo",
 		strings.ToUpper("Get"),
 		"/api/users/{userid}",
-		GetUserInfo,
+		service.GetUserInfo,
 	},
 
 	Route{
 		"GetUserPage",
 		strings.ToUpper("Get"),
 		"/users/{userid}",
-		GetUserPage,
+		service.GetUserPage,
 	},
 
 	Route{
 		"GetUsers",
 		strings.ToUpper("Get"),
 		"/api/users",
-		GetUsers,
+		service.GetUsers,
 	},
 
 	Route{
 		"UpdateUser",
 		strings.ToUpper("Put"),
 		"/users/{userid}",
-		UpdateUser,
+		service.UpdateUser,
 	},
 
 	Route{
 		"UserLogin",
 		strings.ToUpper("Post"),
 		"/users/login",
-		UserLogin,
+		service.UserLogin,
 	},
 
 	Route{
 		"UserLogout",
 		strings.ToUpper("Get"),
 		"/users/logout",
-		UserLogout,
+		service.UserLogout,
 	},
 
 	Route{
 		"UserSignup",
 		strings.ToUpper("Post"),
 		"/users/signup",
-		UserSignup,
+		service.UserSignup,
 	},
 }
