@@ -10,7 +10,9 @@ type DBServiceInterface interface {
 	//AddEssayFromZhihu(article model.Article) (bool, error)
 
 	GetAllUser() ([]model.User, error)
-	GetOneUser(name string) (model.User, error)
+	GetOneUser(string) (model.User, error)
+	CreateUser(model.User) (bool, error)
+	DeleteUser(int64) (bool, error)
 
 	GetAllArticle() ([]model.Article, error)
 	GetArticleByUser(int64) ([]model.Article, error)
@@ -20,6 +22,13 @@ type DBServiceInterface interface {
 	DeleteArticle(int64) (bool, error)
 	UpadteArticleLikeNum(int64, int64) (bool, error)
 	UpadteArticleContent(int64, string) (bool, error)
+
+	GetReplyByArticle(int64) ([]model.Reply, error)
+	CreateReply(model.Reply) (bool, error)
+	UpadteReplyLikeNum(int64, int64) (bool, error)
+
+	GetAllTag() ([]model.Tag, error)
+	GetTagByArticle(int64) ([]model.Tag, error)
 }
 
 type DBService struct {}
