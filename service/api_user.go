@@ -97,26 +97,25 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
 	// TODO：登录相关的非鉴权逻辑
-	r.ParseForm()
-	id := r.PostFormValue("id")
-	username := r.PostFormValue("name")
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	body, _ := ioutil.ReadAll(r.Body)
+
+	var requestUser model.User
+	json.Unmarshal(body, requestUser)
+	username := requestUser.Name
 	user, err := dbServer.GetOneUser(username)
 	if err != nil {
 		log.Println("获取用户失败")
 		return
 	}
-	password := r.PostFormValue("password")
-	if password != user.Password {
+
+	if requestUser.Password != user.Password {
 		log.Println("密码错误，登录失败")
 		return
 	}
 
 	// TODO： 登录相关的鉴权逻辑
-	userId, err := strconv.Atoi(id)
-	if err != nil {
-		log.Printf("类型转换错误")
-	}
-
+	userId := int(user.Id)
 	userTemp := lib.UserInfo{
 		Username: username,
 		ID:       uint64(userId),
@@ -139,7 +138,7 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 
 	cookie2 := http.Cookie{
 		Name:       "id",
-		Value:      id,
+		Value:      string(userId),
 		Path:"/",
 		Expires:    time.Now().AddDate(0, 0, 1),
 	}

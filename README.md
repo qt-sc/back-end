@@ -1,6 +1,48 @@
 # server
 the web server
 
+## 简介
+
+Zhihu-coffee后端基于Golang、MySql和Redis，可以部署到Windows、Linux和MacOS上，提供数据存储、知乎日报数据拉取、文章发布和分享功能。
+
+## Using
+
+### 部署MySql
+
+| 数据库参数名 | 参数      |
+| ------------ | --------- |
+| Name         | mydb      |
+| Username     | root      |
+| Password     | root      |
+| Address      | localhost |
+| Port         | 3306      |
+
+注意：需要调整MySql的编码为utf8或utf8mb4以适应中文字符。
+
+### 部署Redis
+
+| 数据库参数名 | 参数           |
+| ------------ | -------------- |
+| Address      | localhost:6379 |
+| Password     |                |
+| DB           | 0              |
+
+### 运行
+
+```
+go run main.go
+```
+
+
+
+## 设计与功能
+
+
+
+## 数据库设计
+
+
+
 ## 关于测试
 
 ### 鉴权模块测试
