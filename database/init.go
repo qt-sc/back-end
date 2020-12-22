@@ -13,7 +13,7 @@ var db * gorm.DB
 func init(){
 	var DBNAME = "mydb"
 	var DBUSERNAME = "root"
-	var DBPASSWORD = "root"
+	var DBPASSWORD = "2333"
 	var DBADDRESS = "localhost"
 	var DBPORT = "3306"
 	url := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", DBUSERNAME, DBPASSWORD, DBADDRESS, DBPORT, DBNAME)
@@ -38,6 +38,8 @@ func createTable() {
 
 	if(!db.HasTable(&model.Article{})) {
 		db.Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(&model.Article{})
+	} else {
+		clearOldDaily()
 	}
 
 	if(!db.HasTable(&model.Reply{})) {
@@ -49,4 +51,12 @@ func createTable() {
 	}
 
 	return
+}
+
+func clearOldDaily()  {
+	for i := 1; i<12; i++ {
+		var temp model.Article
+		db.Table("article").Where("id = ?", i).Find(&temp)
+		db.Delete(&temp)
+	}
 }

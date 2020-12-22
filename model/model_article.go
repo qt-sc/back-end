@@ -2,7 +2,7 @@ package model
 
 type Article struct {
 
-	Id int64 `json:"id,omitempty" gorm:"id;PRIMARY_KEY"`
+	Id int64 `json:"id,omitempty" gorm:"id"`
 
 	Title string `json:"title,omitempty" gorm:"title"`
 

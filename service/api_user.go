@@ -161,12 +161,16 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserLogout(w http.ResponseWriter, r *http.Request) {
-	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	//w.WriteHeader(http.StatusOK)
-	// 登出只要清除cookie即可
-	http.SetCookie(w, &http.Cookie{Name:"username", Value:"",MaxAge:-1,Path:"/"})
-	http.SetCookie(w, &http.Cookie{Name:"id", Value:"",MaxAge:-1,Path:"/"})
-	http.SetCookie(w, &http.Cookie{Name:"token", Value:"",MaxAge:-1,Path:"/"})
+	token, err := r.Cookie("token")
+	if err != nil {
+		log.Println("获取cookie失败")
+		return
+	}
+
+	conf.Redis.Del(token.Value) 
+	w.Header().Del("Cookie")
 }
 
 func UserSignup(w http.ResponseWriter, r *http.Request) {
