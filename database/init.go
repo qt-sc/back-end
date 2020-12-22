@@ -38,6 +38,8 @@ func createTable() {
 
 	if(!db.HasTable(&model.Article{})) {
 		db.Set("gorm:table_options", "ENGINE=InnoDB").CreateTable(&model.Article{})
+	} else {
+		clearOldDaily()
 	}
 
 	if(!db.HasTable(&model.Reply{})) {
@@ -49,4 +51,12 @@ func createTable() {
 	}
 
 	return
+}
+
+func clearOldDaily()  {
+	for i := 1; i<12; i++ {
+		var temp model.Article
+		db.Table("article").Where("id = ?", i).Find(&temp)
+		db.Delete(&temp)
+	}
 }

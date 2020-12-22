@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"time"
 )
 
 var ZHIHU_URL string = "http://news-at.zhihu.com/api/4"
@@ -74,8 +73,8 @@ func GetLatestEssay() []model.Article {
 			x.Content = lib.RemoveNonBmpUnicode(x.Content)
 			x.Author = lib.RemoveNonBmpUnicode(x.Author)
 
-			mid := model.Reply{int64(x.Id), int64(i), int64(x.Likes), time.Now(), x.Content, "/users/" + x.Author, "www.baidu.com"}
-			article.Replies = append(article.Replies, mid)
+			//mid := model.Reply{int64(x.Id), int64(i), int64(x.Likes), time.Now(), x.Content, "/users/" + x.Author, "www.baidu.com"}
+			//article.Replies = append(article.Replies, mid)
 		}
 
 		article.LikeNum, err = getExtraById(id)

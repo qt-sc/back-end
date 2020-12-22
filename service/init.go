@@ -23,14 +23,14 @@ func init() {
 	//hubServer = noti.NewHubInstance()
 	//go hubServer.Run()
 
-	//getZhihuDaily()
-	//fmt.Println(dbServer.GetArticleByArticle(1))
+	getZhihuDaily()
+	fmt.Println(dbServer.GetArticleByArticle(1))
 }
 
 func getZhihuDaily() {
 	ref := script.GetLatestEssay()
 
-	//fmt.Println(ref[0])
+	fmt.Println(ref[0])
 
 	for _, x := range ref {
 		ok, err := dbServer.CreateArticle(x)
