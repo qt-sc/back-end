@@ -32,6 +32,7 @@ func Auth(next http.Handler) http.Handler{
 			return
 		}
 
+		log.Println("鉴权有效")
 		next.ServeHTTP(w, r)
 	})
 }

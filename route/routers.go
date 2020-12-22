@@ -188,6 +188,13 @@ var routes = Routes{
 	},
 
 	Route{
+		"UserLogout",
+		strings.ToUpper("Get"),
+		"/users/logout",
+		service.UserLogout,
+	},
+
+	Route{
 		"GetUserPage",
 		strings.ToUpper("Get"),
 		"/users/{userid}",
@@ -215,12 +222,7 @@ var routes = Routes{
 		service.UserLogin,
 	},
 
-	Route{
-		"UserLogout",
-		strings.ToUpper("Get"),
-		"/users/logout",
-		service.UserLogout,
-	},
+
 
 	Route{
 		"UserSignup",
