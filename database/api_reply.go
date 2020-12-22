@@ -36,7 +36,7 @@ func (dbservice *DBService) GetReplyByArticle(article_id int64) ([]model.Reply, 
 	return replylist, nil
 }
 
-//UpadteReplyLikeNum 更新文章点赞数
+//UpadteReplyLikeNum 更新点赞数
 func (dbservice *DBService) UpadteReplyLikeNum(reply_id int64, like_num_inc int64) (bool, error) {
 
 	var reply model.Reply
