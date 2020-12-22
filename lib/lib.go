@@ -2,6 +2,8 @@ package lib
 
 import (
 	"github.com/rs/xid"
+	"log"
+	"regexp"
 	"strings"
 )
 
@@ -19,4 +21,13 @@ func GetFollowParameter(url string, key string) string {
 		}
 	}
 	return value
+}
+
+func RemoveNonBmpUnicode(str string) string {
+	re, err := regexp.Compile("[^\\x00-\\xFF]")
+	if err != nil {
+		log.Fatal(err)
+	}
+	rep := re.ReplaceAllString(str, "")
+	return rep
 }

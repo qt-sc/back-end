@@ -2,7 +2,7 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
+	"github.com/qt-sc/server/model"
 
 	"github.com/qt-sc/server/conf"
 	"github.com/qt-sc/server/lib"
@@ -46,14 +46,21 @@ func GetSignupPage(w http.ResponseWriter, r *http.Request) {
 func GetUserInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	
-	url := r.RequestURI
-	idstr := lib.GetFollowParameter(url, "users")
-	id, err := strconv.Atoi(idstr)
+	//url := r.RequestURI
+	//idstr := lib.GetFollowParameter(url, "users")
+	//id, err := strconv.Atoi(idstr)
+	//if err != nil {
+	//	log.Fatal("string to int fail", err)
+	//	w.WriteHeader(http.StatusNotFound)
+	//}
+
+
+	username, err := r.Cookie("username")
 	if err != nil {
-		log.Fatal("string to int fail", err)
-		w.WriteHeader(http.StatusNotFound)
+		log.Println("获取cookie失败")
 	}
-	user, err := dbServer.GetOneUser(int64(id))
+	//user, err := dbServer.GetOneUser(int64(id))
+	user, err := dbServer.GetOneUser(username.Value)
 	if err != nil {
 		log.Fatal("Fail to get user by ID", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -101,10 +108,22 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
-	// 登录相关的鉴权逻辑
+	// TODO：登录相关的非鉴权逻辑
 	r.ParseForm()
 	id := r.PostFormValue("id")
 	username := r.PostFormValue("name")
+	user, err := dbServer.GetOneUser(username)
+	if err != nil {
+		log.Println("获取用户失败")
+		return
+	}
+	password := r.PostFormValue("password")
+	if password != user.Password {
+		log.Println("密码错误，登录失败")
+		return
+	}
+
+	// TODO： 登录相关的鉴权逻辑
 	userId, err := strconv.Atoi(id)
 	if err != nil {
 		log.Printf("类型转换错误")
@@ -148,7 +167,6 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Set-Cookie", cookie2.String())
 	w.Header().Add("Set-Cookie", cookie3.String())
 
-	// TODO: 登录除鉴权相关的逻辑
 }
 
 func UserLogout(w http.ResponseWriter, r *http.Request) {
@@ -163,6 +181,26 @@ func UserLogout(w http.ResponseWriter, r *http.Request) {
 func UserSignup(w http.ResponseWriter, r *http.Request) {
 	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	//w.WriteHeader(http.StatusOK)
+	// 暂定
+	r.ParseForm()
+	id := r.PostFormValue("id")
+	userId, err := strconv.Atoi(id)
+	if err != nil {
+		log.Println("注册失败")
+		return
+	}
+	user := model.User{
+		Id:       int64(userId),
+		Name:     r.PostFormValue("name"),
+		Password: r.PostFormValue("password"),
+		Articles: nil,
+		Email:    r.PostFormValue("email"),
+		Url:      r.PostFormValue("url"),
+	}
+
+	dbServer.CreateUser(user)
+
+	w.WriteHeader(http.StatusOK)
 
 
 }

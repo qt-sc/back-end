@@ -1,6 +1,8 @@
 package  database
 
-import "github.com/qt-sc/server/model"
+import (
+	"github.com/qt-sc/server/model"
+)
 
 //GetAllArticle 获取所有文章
 func (dbservice *DBService) GetAllArticle() ([]model.Article, error) {
