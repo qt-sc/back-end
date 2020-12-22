@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -18,7 +19,7 @@ func CreateArticle(w http.ResponseWriter, r *http.Request) {
 	var article model.Article
 	json.Unmarshal([]byte(body), &article)
 
-	_, err = dbServer.CreateArticle(article)
+	_, err := dbServer.CreateArticle(article)
 	if err != nil {
 		log.Fatal("Fail to create article", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -140,7 +141,7 @@ func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	var article model.Article
 	json.Unmarshal([]byte(body), &article)
 
-	_, err = dbServer.UpdateArticleContent(article.ID, article.Content)
+	_, err := dbServer.UpdateArticleContent(article.ID, article.Content)
 	if err != nil {
 		log.Fatal("Fail to update article content", err)
 		w.WriteHeader(http.StatusNotFound)

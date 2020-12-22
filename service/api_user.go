@@ -2,15 +2,15 @@ package service
 
 import (
 	"encoding/json"
-	"github.com/qt-sc/server/model"
-
-	"github.com/qt-sc/server/conf"
-	"github.com/qt-sc/server/lib"
+	"io/ioutil"
 	"log"
-
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/qt-sc/server/conf"
+	"github.com/qt-sc/server/lib"
+	"github.com/qt-sc/server/model"
 )
 
 func ApiGet(w http.ResponseWriter, r *http.Request) {

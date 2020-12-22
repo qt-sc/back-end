@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -19,7 +20,7 @@ func CreateReply(w http.ResponseWriter, r *http.Request) {
 	var reply model.Reply
 	json.Unmarshal([]byte(body), &reply)
 
-	_, err = dbServer.CreateReply(reply)
+	_, err := dbServer.CreateReply(reply)
 	if err != nil {
 		log.Fatal("Fail to create reply", err)
 		w.WriteHeader(http.StatusNotFound)
