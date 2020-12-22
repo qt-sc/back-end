@@ -2,15 +2,15 @@ package service
 
 import (
 	"encoding/json"
-	"github.com/qt-sc/server/model"
-
-	"github.com/qt-sc/server/conf"
-	"github.com/qt-sc/server/lib"
+	"io/ioutil"
 	"log"
-
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/qt-sc/server/conf"
+	"github.com/qt-sc/server/lib"
+	"github.com/qt-sc/server/model"
 )
 
 func ApiGet(w http.ResponseWriter, r *http.Request) {
@@ -112,10 +112,22 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-// func UpdateUser(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-// 	w.WriteHeader(http.StatusOK)
-// }
+func UpdateUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	
+	body, _ := ioutil.ReadAll(r.Body)
+
+	var user model.User
+	json.Unmarshal([]byte(body), &user)
+
+	_, err := dbServer.UpdateUser(user)
+	if err != nil {
+		log.Fatal("Fail to update user", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+	
+	w.WriteHeader(http.StatusOK)
+}
 
 func UserLogin(w http.ResponseWriter, r *http.Request) {
 	// TODO：登录相关的非鉴权逻辑
@@ -193,26 +205,18 @@ func UserLogout(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserSignup(w http.ResponseWriter, r *http.Request) {
-	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	//w.WriteHeader(http.StatusOK)
-	// 暂定
-	r.ParseForm()
-	id := r.PostFormValue("id")
-	userId, err := strconv.Atoi(id)
-	if err != nil {
-		log.Println("注册失败")
-		return
-	}
-	user := model.User{
-		Id:       int64(userId),
-		Name:     r.PostFormValue("name"),
-		Password: r.PostFormValue("password"),
-		Articles: nil,
-		Email:    r.PostFormValue("email"),
-		Url:      r.PostFormValue("url"),
-	}
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	
+	body, _ := ioutil.ReadAll(r.Body)
 
-	dbServer.CreateUser(user)
+	var user model.User
+	json.Unmarshal([]byte(body), &user)
+
+	_, err := dbServer.CreateUser(user)
+	if err != nil {
+		log.Fatal("Fail to create user", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
 
 	w.WriteHeader(http.StatusOK)
 }

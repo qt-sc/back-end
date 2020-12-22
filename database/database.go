@@ -13,6 +13,7 @@ type DBServiceInterface interface {
 	GetOneUser(string) (model.User, error)
 	CreateUser(model.User) (bool, error)
 	DeleteUser(int64) (bool, error)
+	UpdateUser(model.User) (bool, error)
 
 	GetAllArticle() ([]model.Article, error)
 	GetArticleByUser(int64) ([]model.Article, error)

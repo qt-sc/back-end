@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -13,41 +14,12 @@ import (
 func CreateArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	
-	r.ParseForm()
-	idstr := r.PostFormValue("id")
-	article_id, err := strconv.Atoi(idstr)
-	if err != nil {
-		log.Fatal("string to int fail", err)
-		w.WriteHeader(http.StatusNotFound)
-	}
+	body, _ := ioutil.ReadAll(r.Body)
 
-	article_readNum, err :=  strconv.Atoi(r.PostFormValue("readNum"))
-	if err != nil {
-		log.Fatal("string to int fail", err)
-		w.WriteHeader(http.StatusNotFound)
-	}
+	var article model.Article
+	json.Unmarshal([]byte(body), &article)
 
-	article_likeNum, err :=  strconv.Atoi(r.PostFormValue("likeNum"))
-	if err != nil {
-		log.Fatal("string to int fail", err)
-		w.WriteHeader(http.StatusNotFound)
-	}
-
-	article_user_id, err := strconv.Atoi(r.PostFormValue("user_id"))
-	
-	article := model.Article{
-		Id:       	int64(article_id),
-		Title:		r.PostFormValue("title"),
-		ReadNum:	int64(article_readNum),
-		LikeNum: 	int64(article_likeNum),
-		Content:	r.PostFormValue("content"),
-		UserID:		int64(article_user_id),
-		Replies:	nil,
-		Tags:		nil,
-		Url:      	r.PostFormValue("url"),
-	}
-
-	_, err = dbServer.CreateArticle(article)
+	_, err := dbServer.CreateArticle(article)
 	if err != nil {
 		log.Fatal("Fail to create article", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -164,15 +136,12 @@ func LikeArticle(w http.ResponseWriter, r *http.Request) {
 func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	
-	r.ParseForm()
-	idstr := r.PostFormValue("id")
-	article_id, err := strconv.Atoi(idstr)
-	if err != nil {
-		log.Fatal("string to int fail", err)
-		w.WriteHeader(http.StatusNotFound)
-	}
+	body, _ := ioutil.ReadAll(r.Body)
 
-	_, err = dbServer.UpdateArticleContent(int64(article_id), r.PostFormValue("content"))
+	var article model.Article
+	json.Unmarshal([]byte(body), &article)
+
+	_, err := dbServer.UpdateArticleContent(article.Id, article.Content)
 	if err != nil {
 		log.Fatal("Fail to update article content", err)
 		w.WriteHeader(http.StatusNotFound)

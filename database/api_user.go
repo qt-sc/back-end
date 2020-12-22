@@ -39,4 +39,12 @@ func (dbservice *DBService) DeleteUser(user_id int64) (bool, error) {
 	return true, nil
 }
 
+//UpdateUser 更新用户
+func (dbservice *DBService) UpdateUser(user model.User) (bool, error) {
 
+	// 暂定
+	if err := db.Table("article").Model(&user).Updates(user).Error; err != nil {
+		return false, err
+	}
+	return true, nil
+}
