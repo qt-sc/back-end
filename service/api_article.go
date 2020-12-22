@@ -172,7 +172,7 @@ func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 	}
 
-	_, err = dbServer.UpdateArticleContent(article_id, r.PostFormValue("content"))
+	_, err = dbServer.UpdateArticleContent(int64(article_id), r.PostFormValue("content"))
 	if err != nil {
 		log.Fatal("Fail to update article content", err)
 		w.WriteHeader(http.StatusNotFound)
