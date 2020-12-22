@@ -68,12 +68,12 @@ var routes = Routes{
 		service.GetArticle,
 	},
 
-	Route{
-		"GetArticlePage",
-		strings.ToUpper("Get"),
-		"/users/{userid}/articles/{articleid}",
-		service.GetArticlePage,
-	},
+	// Route{
+	// 	"GetArticlePage",
+	// 	strings.ToUpper("Get"),
+	// 	"/users/{userid}/articles/{articleid}",
+	// 	service.GetArticlePage,
+	// },
 
 	Route{
 		"GetArticles",
@@ -82,19 +82,19 @@ var routes = Routes{
 		service.GetArticles,
 	},
 
-	Route{
-		"GetArticlesPage",
-		strings.ToUpper("Get"),
-		"/users/{userid}/articles",
-		service.GetArticlesPage,
-	},
+	// Route{
+	// 	"GetArticlesPage",
+	// 	strings.ToUpper("Get"),
+	// 	"/users/{userid}/articles",
+	// 	service.GetArticlesPage,
+	// },
 
-	Route{
-		"GetCreateArticlePage",
-		strings.ToUpper("Get"),
-		"/users/{userid}/articles/new",
-		service.GetCreateArticlePage,
-	},
+	// Route{
+	// 	"GetCreateArticlePage",
+	// 	strings.ToUpper("Get"),
+	// 	"/users/{userid}/articles/new",
+	// 	service.GetCreateArticlePage,
+	// },
 
 	Route{
 		"LikeArticle",
@@ -138,12 +138,12 @@ var routes = Routes{
 		service.LikeReply,
 	},
 
-	Route{
-		"GetArticlesPageByTag",
-		strings.ToUpper("Get"),
-		"/tags/{tagname}",
-		service.GetArticlesPageByTag,
-	},
+	// Route{
+	// 	"GetArticlesPageByTag",
+	// 	strings.ToUpper("Get"),
+	// 	"/tags/{tagname}",
+	// 	service.GetArticlesPageByTag,
+	// },
 
 	Route{
 		"GetTags",
@@ -173,12 +173,12 @@ var routes = Routes{
 		service.DeleteUser,
 	},
 
-	Route{
-		"GetSignupPage",
-		strings.ToUpper("Get"),
-		"/users/signup",
-		service.GetSignupPage,
-	},
+	// Route{
+	// 	"GetSignupPage",
+	// 	strings.ToUpper("Get"),
+	// 	"/users/signup",
+	// 	service.GetSignupPage,
+	// },
 
 	Route{
 		"GetUserInfo",
@@ -194,12 +194,12 @@ var routes = Routes{
 		service.UserLogout,
 	},
 
-	Route{
-		"GetUserPage",
-		strings.ToUpper("Get"),
-		"/users/{userid}",
-		service.GetUserPage,
-	},
+	// Route{
+	// 	"GetUserPage",
+	// 	strings.ToUpper("Get"),
+	// 	"/users/{userid}",
+	// 	service.GetUserPage,
+	// },
 
 	Route{
 		"GetUsers",
@@ -221,8 +221,6 @@ var routes = Routes{
 		"/users/login",
 		service.UserLogin,
 	},
-
-
 
 	Route{
 		"UserSignup",
