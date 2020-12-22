@@ -2,10 +2,11 @@ package service
 
 import (
 	"encoding/json"
-	"github.com/qt-sc/server/lib"
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/qt-sc/server/lib"
 )
 
 func CreateArticle(w http.ResponseWriter, r *http.Request) {
@@ -15,29 +16,48 @@ func CreateArticle(w http.ResponseWriter, r *http.Request) {
 
 func DeleteArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+	url := r.RequestURI
+	idstr := lib.GetFollowParameter(url, "articles")
+	article_id, err := strconv.Atoi(idstr)
+	if err != nil {
+		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
+	_, err = dbServer.DeleteArticle(int64(article_id))
+	if err != nil {
+		log.Fatal("Fail to delete article by ID", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
 	w.WriteHeader(http.StatusOK)
 }
 
 func GetArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
 
 	url := r.RequestURI
-	idstr := lib.GetFollowParameter(url, "users")
-	id, err := strconv.Atoi(idstr)
+	idstr := lib.GetFollowParameter(url, "articles")
+	article_id, err := strconv.Atoi(idstr)
 	if err != nil {
 		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
 	}
-	articles, err := dbServer.GetArticleByArticle(int64(id))
+	article, err := dbServer.GetArticleByArticle(int64(article_id))
 	if err != nil {
 		log.Fatal("Fail to get article by ID", err)
+		w.WriteHeader(http.StatusNotFound)
 	}
 
-	msg, err := json.Marshal(articles)
+	msg, err := json.Marshal(article)
 	if err != nil {
 		log.Fatal("JSON Marshal fail.", err)
+		w.WriteHeader(http.StatusNotFound)
 	}
 	w.Write(msg)
+
+	w.WriteHeader(http.StatusOK)
 }
 
 func GetArticlePage(w http.ResponseWriter, r *http.Request) {
@@ -51,22 +71,24 @@ func GetArticles(w http.ResponseWriter, r *http.Request) {
 
 	url := r.RequestURI
 	idstr := lib.GetFollowParameter(url, "users")
-	id, err := strconv.Atoi(idstr)
+	user_id, err := strconv.Atoi(idstr)
 	if err != nil {
 		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
 	}
-	articles, err := dbServer.GetArticleByUser(int64(id))
+	articles, err := dbServer.GetArticleByUser(int64(user_id))
 	if err != nil {
 		log.Fatal("Fail to get article by ID", err)
+		w.WriteHeader(http.StatusNotFound)
 	}
 
 	msg, err := json.Marshal(articles)
 	if err != nil {
 		log.Fatal("JSON Marshal fail.", err)
+		w.WriteHeader(http.StatusNotFound)
 	}
 	w.Write(msg)
 }
-
 
 func GetArticlesPage(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
@@ -80,6 +102,20 @@ func GetCreateArticlePage(w http.ResponseWriter, r *http.Request) {
 
 func LikeArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+	url := r.RequestURI
+	idstr := lib.GetFollowParameter(url, "articles")
+	article_id, err := strconv.Atoi(idstr)
+	if err != nil {
+		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+	_, err = dbServer.UpadteArticleLikeNum(int64(article_id), int64(1))
+	if err != nil {
+		log.Fatal("Fail to update article's like number by ID", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
 	w.WriteHeader(http.StatusOK)
 }
 
