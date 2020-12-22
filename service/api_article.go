@@ -152,7 +152,7 @@ func LikeArticle(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("string to int fail", err)
 		w.WriteHeader(http.StatusNotFound)
 	}
-	_, err = dbServer.UpadteArticleLikeNum(int64(article_id), int64(1))
+	_, err = dbServer.UpdateArticleLikeNum(int64(article_id), int64(1))
 	if err != nil {
 		log.Fatal("Fail to update article's like number by ID", err)
 		w.WriteHeader(http.StatusNotFound)

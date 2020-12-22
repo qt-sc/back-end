@@ -20,13 +20,13 @@ type DBServiceInterface interface {
 	GetArticleByArticle(int64) (model.Article, error)
 	CreateArticle(model.Article) (bool, error)
 	DeleteArticle(int64) (bool, error)
-	UpadteArticleLikeNum(int64, int64) (bool, error)
-	UpadteArticleContent(int64, string) (bool, error)
+	UpdateArticleLikeNum(int64, int64) (bool, error)
+	UpdateArticleContent(int64, string) (bool, error)
 
 	GetReply(int64) (model.Reply, error)
 	GetReplyByArticle(int64) ([]model.Reply, error)
 	CreateReply(model.Reply) (bool, error)
-	UpadteReplyLikeNum(int64, int64) (bool, error)
+	UpdateReplyLikeNum(int64, int64) (bool, error)
 
 	GetAllTag() ([]model.Tag, error)
 	GetTagByArticle(int64) ([]model.Tag, error)

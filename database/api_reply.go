@@ -36,8 +36,8 @@ func (dbservice *DBService) GetReplyByArticle(article_id int64) ([]model.Reply, 
 	return replylist, nil
 }
 
-//UpadteReplyLikeNum 更新点赞数
-func (dbservice *DBService) UpadteReplyLikeNum(reply_id int64, like_num_inc int64) (bool, error) {
+//UpdateReplyLikeNum 更新点赞数
+func (dbservice *DBService) UpdateReplyLikeNum(reply_id int64, like_num_inc int64) (bool, error) {
 
 	var reply model.Reply
 	if err := db.Table("reply").Where("id = ?", reply_id).First(&reply).Error; err != nil {

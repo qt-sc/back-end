@@ -121,7 +121,7 @@ func LikeReply(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("string to int fail", err)
 		w.WriteHeader(http.StatusNotFound)
 	}
-	_, err = dbServer.UpadteReplyLikeNum(int64(reply_id), int64(1))
+	_, err = dbServer.UpdateReplyLikeNum(int64(reply_id), int64(1))
 	if err != nil {
 		log.Fatal("Fail to update reply's like number by ID", err)
 		w.WriteHeader(http.StatusNotFound)
