@@ -174,6 +174,7 @@ func UserLogout(w http.ResponseWriter, r *http.Request) {
 func UserSignup(w http.ResponseWriter, r *http.Request) {
 	//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	//w.WriteHeader(http.StatusOK)
+	// 暂定
 	r.ParseForm()
 	id := r.PostFormValue("id")
 	userId, err := strconv.Atoi(id)
