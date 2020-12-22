@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/qt-sc/server/lib"
+	"github.com/qt-sc/server/model"
 )
 
 func CreateArticle(w http.ResponseWriter, r *http.Request) {

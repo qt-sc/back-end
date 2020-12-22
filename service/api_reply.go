@@ -32,7 +32,7 @@ func CreateReply(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 	}
 
-	reply_createTime, err := time.ParseInLocation("2006-01-02 15:04:05", t1, time.Local)
+	reply_createTime, err := time.ParseInLocation("2006-01-02 15:04:05", r.PostFormValue("createTime"), time.Local)
 	if err != nil {
 		log.Fatal("string to time fail", err)
 		w.WriteHeader(http.StatusNotFound)
