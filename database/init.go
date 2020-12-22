@@ -13,7 +13,7 @@ var db * gorm.DB
 func init(){
 	var DBNAME = "mydb"
 	var DBUSERNAME = "root"
-	var DBPASSWORD = "2333"
+	var DBPASSWORD = "root"
 	var DBADDRESS = "localhost"
 	var DBPORT = "3306"
 	url := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", DBUSERNAME, DBPASSWORD, DBADDRESS, DBPORT, DBNAME)

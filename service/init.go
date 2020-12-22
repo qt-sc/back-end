@@ -24,13 +24,13 @@ func init() {
 	//go hubServer.Run()
 
 	getZhihuDaily()
-	fmt.Println(dbServer.GetArticleByArticle(1))
+	//fmt.Println(dbServer.GetArticleByArticle(1))
 }
 
 func getZhihuDaily() {
 	ref := script.GetLatestEssay()
 
-	fmt.Println(ref[0])
+	//fmt.Println(ref[0])
 
 	for _, x := range ref {
 		ok, err := dbServer.CreateArticle(x)
