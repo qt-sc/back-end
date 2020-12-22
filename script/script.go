@@ -47,7 +47,7 @@ type DailyReply struct {
 	Time    int    `json:"time"`
 }
 
-func GetLatestEssay() []model.Article {
+func GetLatestEssay(id int) []model.Article {
 	dailyIDList, err := getDailyList()
 	if err != nil {
 		fmt.Println("Fail to get Daily Essay List.")
@@ -57,7 +57,7 @@ func GetLatestEssay() []model.Article {
 	var articleArr []model.Article
 
 	for i, id := range dailyIDList {
-		article := model.Article{}
+		article := model.Article{UserID: int64(id)}
 		article.Title, article.Content, err = getEssayById(id)
 		if err != nil {
 			fmt.Println("Fail to get content.")
@@ -84,6 +84,7 @@ func GetLatestEssay() []model.Article {
 		}
 		article.ReadNum = 0
 		article.Id = int64(i) + 1
+		article.Tags = append(article.Tags, model.Tag{"ZhihuDaily"})
 		//fmt.Println(article.Id)
 		articleArr = append(articleArr, article)
 	}

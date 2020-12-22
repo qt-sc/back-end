@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"github.com/qt-sc/server/database"
+	"github.com/qt-sc/server/model"
 	"github.com/qt-sc/server/script"
 )
 
@@ -28,7 +29,11 @@ func init() {
 }
 
 func getZhihuDaily() {
-	ref := script.GetLatestEssay()
+	if _, err := dbServer.GetOneUser("zhihu"); err != nil {
+		dbServer.CreateUser(model.User{1, "zhihu", "1", []model.Article{}, "", "/users/1"})
+	}
+
+	ref := script.GetLatestEssay(1)
 
 	//fmt.Println(ref[0])
 
