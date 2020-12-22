@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/qt-sc/server/lib"
 	"github.com/qt-sc/server/model"

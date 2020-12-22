@@ -141,7 +141,7 @@ func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	var article model.Article
 	json.Unmarshal([]byte(body), &article)
 
-	_, err := dbServer.UpdateArticleContent(article.ID, article.Content)
+	_, err := dbServer.UpdateArticleContent(article.Id, article.Content)
 	if err != nil {
 		log.Fatal("Fail to update article content", err)
 		w.WriteHeader(http.StatusNotFound)
