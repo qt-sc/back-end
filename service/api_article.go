@@ -11,6 +11,47 @@ import (
 
 func CreateArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	
+	r.ParseForm()
+	idstr := r.PostFormValue("id")
+	article_id, err := strconv.Atoi(idstr)
+	if err != nil {
+		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
+	article_readNum, err :=  strconv.Atoi(r.PostFormValue("readNum"))
+	if err != nil {
+		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
+	article_likeNum, err :=  strconv.Atoi(r.PostFormValue("likeNum"))
+	if err != nil {
+		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
+	article_user_id, err := strconv.Atoi(r.PostFormValue("user_id"))
+	
+	article := model.Article{
+		Id:       	int64(article_id),
+		Title:		r.PostFormValue("title"),
+		ReadNum:	int64(article_readNum),
+		LikeNum: 	int64(article_likeNum),
+		Content:	r.PostFormValue("content"),
+		UserID:		int64(article_user_id),
+		Replies:	nil,
+		Tags:		nil,
+		Url:      	r.PostFormValue("url"),
+	}
+
+	_, err = dbServer.CreateArticle(article)
+	if err != nil {
+		log.Fatal("Fail to create article", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+	
 	w.WriteHeader(http.StatusOK)
 }
 
@@ -121,5 +162,6 @@ func LikeArticle(w http.ResponseWriter, r *http.Request) {
 
 func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	
 	w.WriteHeader(http.StatusOK)
 }
