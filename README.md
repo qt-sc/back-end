@@ -1,5 +1,5 @@
-# server
-the web server
+# back-end
+the back end for zhihu_coffee
 
 ## 简介
 
