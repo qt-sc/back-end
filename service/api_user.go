@@ -46,14 +46,21 @@ func GetSignupPage(w http.ResponseWriter, r *http.Request) {
 func GetUserInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	
-	url := r.RequestURI
-	idstr := lib.GetFollowParameter(url, "users")
-	id, err := strconv.Atoi(idstr)
+	//url := r.RequestURI
+	//idstr := lib.GetFollowParameter(url, "users")
+	//id, err := strconv.Atoi(idstr)
+	//if err != nil {
+	//	log.Fatal("string to int fail", err)
+	//	w.WriteHeader(http.StatusNotFound)
+	//}
+
+
+	username, err := r.Cookie("username")
 	if err != nil {
-		log.Fatal("string to int fail", err)
-		w.WriteHeader(http.StatusNotFound)
+		log.Println("获取cookie失败")
 	}
-	user, err := dbServer.GetOneUser(int64(id))
+	//user, err := dbServer.GetOneUser(int64(id))
+	user, err := dbServer.GetOneUser(username.Value)
 	if err != nil {
 		log.Fatal("Fail to get user by ID", err)
 		w.WriteHeader(http.StatusNotFound)

@@ -71,7 +71,7 @@ func GetLatestEssay() []model.Article {
 		}
 
 		for _, x := range reply {
-			mid := model.Reply{int64(x.Id), int64(i), int64(x.Likes), time.Now(), x.Content, "/users/" + x.Author}
+			mid := model.Reply{int64(x.Id), int64(i), int64(x.Likes), time.Now(), x.Content, "/users/" + x.Author, "www.baidu.com"}
 			article.Replies = append(article.Replies, mid)
 		}
 
