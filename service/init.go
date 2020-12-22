@@ -23,7 +23,7 @@ func init() {
 	//hubServer = noti.NewHubInstance()
 	//go hubServer.Run()
 
-	getZhihuDaily()
+	//getZhihuDaily()
 	//fmt.Println(dbServer.GetArticleByArticle(1))
 }
 
