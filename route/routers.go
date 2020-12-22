@@ -68,33 +68,12 @@ var routes = Routes{
 		service.GetArticle,
 	},
 
-	// Route{
-	// 	"GetArticlePage",
-	// 	strings.ToUpper("Get"),
-	// 	"/users/{userid}/articles/{articleid}",
-	// 	service.GetArticlePage,
-	// },
-
 	Route{
 		"GetArticles",
 		strings.ToUpper("Get"),
 		"/api/users/{userid}/articles",
 		service.GetArticles,
 	},
-
-	// Route{
-	// 	"GetArticlesPage",
-	// 	strings.ToUpper("Get"),
-	// 	"/users/{userid}/articles",
-	// 	service.GetArticlesPage,
-	// },
-
-	// Route{
-	// 	"GetCreateArticlePage",
-	// 	strings.ToUpper("Get"),
-	// 	"/users/{userid}/articles/new",
-	// 	service.GetCreateArticlePage,
-	// },
 
 	Route{
 		"LikeArticle",
@@ -108,6 +87,13 @@ var routes = Routes{
 		strings.ToUpper("Put"),
 		"/users/{userid}/articles/{articleid}",
 		service.UpdateArticle,
+	},
+
+	Route{
+		"GetApis",
+		strings.ToUpper("Get"),
+		"/api",
+		service.GetApis,
 	},
 
 	Route{
@@ -138,12 +124,12 @@ var routes = Routes{
 		service.LikeReply,
 	},
 
-	// Route{
-	// 	"GetArticlesPageByTag",
-	// 	strings.ToUpper("Get"),
-	// 	"/tags/{tagname}",
-	// 	service.GetArticlesPageByTag,
-	// },
+	Route{
+		"CreateTag",
+		strings.ToUpper("Post"),
+		"/tags/new",
+		service.CreateTag,
+	},
 
 	Route{
 		"GetTags",
@@ -160,25 +146,11 @@ var routes = Routes{
 	},
 
 	Route{
-		"ApiGet",
-		strings.ToUpper("Get"),
-		"/api",
-		service.ApiGet,
-	},
-
-	Route{
 		"DeleteUser",
 		strings.ToUpper("Delete"),
 		"/users/{userid}",
 		service.DeleteUser,
 	},
-
-	// Route{
-	// 	"GetSignupPage",
-	// 	strings.ToUpper("Get"),
-	// 	"/users/signup",
-	// 	service.GetSignupPage,
-	// },
 
 	Route{
 		"GetUserInfo",
@@ -186,20 +158,6 @@ var routes = Routes{
 		"/api/users/{userid}",
 		service.GetUserInfo,
 	},
-
-	Route{
-		"UserLogout",
-		strings.ToUpper("Get"),
-		"/users/logout",
-		service.UserLogout,
-	},
-
-	// Route{
-	// 	"GetUserPage",
-	// 	strings.ToUpper("Get"),
-	// 	"/users/{userid}",
-	// 	service.GetUserPage,
-	// },
 
 	Route{
 		"GetUsers",
@@ -220,6 +178,13 @@ var routes = Routes{
 		strings.ToUpper("Post"),
 		"/users/login",
 		service.UserLogin,
+	},
+
+	Route{
+		"UserLogout",
+		strings.ToUpper("Get"),
+		"/users/logout",
+		service.UserLogout,
 	},
 
 	Route{

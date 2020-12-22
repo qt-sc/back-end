@@ -31,6 +31,7 @@ type DBServiceInterface interface {
 
 	GetAllTag() ([]model.Tag, error)
 	GetTagByArticle(int64) ([]model.Tag, error)
+	CreateTag(model.Tag) (bool, error)
 }
 
 type DBService struct {}

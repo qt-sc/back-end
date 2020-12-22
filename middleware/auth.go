@@ -5,13 +5,15 @@ import (
 	"github.com/qt-sc/server/lib"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func Auth(next http.Handler) http.Handler{
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
 		// TODO： 如果是login和signup，不需要鉴权
 		// 若有其他无需鉴权的api，请添加
-		if r.URL.Path == "/users/login" || r.URL.Path == "/users/signup" {
+		// 为了做测试把/api/前缀api剔除
+		if r.URL.Path == "/users/login" || r.URL.Path == "/users/signup" || strings.HasPrefix(r.URL.Path, "/api/"){
 			next.ServeHTTP(w, r)
 			return
 		}

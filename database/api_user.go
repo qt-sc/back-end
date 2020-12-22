@@ -42,8 +42,7 @@ func (dbservice *DBService) DeleteUser(user_id int64) (bool, error) {
 //UpdateUser 更新用户
 func (dbservice *DBService) UpdateUser(user model.User) (bool, error) {
 
-	// 暂定
-	if err := db.Table("article").Model(&user).Updates(user).Error; err != nil {
+	if err := db.Table("article").Model(&user).Updates(map[string]interface{}{"name": user.Id, "password": user.Password, "email": user.Email}).Error; err != nil {
 		return false, err
 	}
 	return true, nil

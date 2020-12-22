@@ -2,6 +2,16 @@ package database
 
 import "github.com/qt-sc/server/model"
 
+//CreateTag 创建标签
+func (dbservice *DBService) CreateTag(tag model.Tag) (bool, error) {
+	
+	if err := db.Table("tag").Create(&tag).Error; err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
+
 //GetAllTag 获取所有标签
 func (dbservice *DBService) GetAllTag() ([]model.Tag, error) {
 	var taglist []model.Tag

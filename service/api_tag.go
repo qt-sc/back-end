@@ -2,16 +2,30 @@ package service
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/qt-sc/server/lib"
+	"github.com/qt-sc/server/model"
 )
 
-// func GetArticlesPageByTag(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-// 	w.WriteHeader(http.StatusOK)
-// }
+func CreateTag(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	
+	body, _ := ioutil.ReadAll(r.Body)
+
+	var tag model.Tag
+	json.Unmarshal([]byte(body), &tag)
+
+	_, err := dbServer.CreateTag(tag)
+	if err != nil {
+		log.Fatal("Fail to create tag", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+	
+	w.WriteHeader(http.StatusOK)
+}
 
 func GetTags(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
