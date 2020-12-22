@@ -6,7 +6,7 @@ import (
  
 type Reply struct {
 
-	Id int64 `json:"id,omitempty" gorm:"id;PRIMARY_KEY"`
+	Id int64 `json:"id,omitempty" gorm:"id"`
 
 	ArticleID int64 `json:"article_id,omitempty" gorm:"article_id"`
 

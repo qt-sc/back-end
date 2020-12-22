@@ -71,6 +71,9 @@ func GetLatestEssay() []model.Article {
 		}
 
 		for _, x := range reply {
+			x.Content = lib.RemoveNonBmpUnicode(x.Content)
+			x.Author = lib.RemoveNonBmpUnicode(x.Author)
+
 			mid := model.Reply{int64(x.Id), int64(i), int64(x.Likes), time.Now(), x.Content, "/users/" + x.Author, "www.baidu.com"}
 			article.Replies = append(article.Replies, mid)
 		}
@@ -81,8 +84,8 @@ func GetLatestEssay() []model.Article {
 			continue
 		}
 		article.ReadNum = 0
-		article.Id = int64(i)
-
+		article.Id = int64(i) + 1
+		//fmt.Println(article.Id)
 		articleArr = append(articleArr, article)
 	}
 

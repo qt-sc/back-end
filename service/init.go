@@ -7,6 +7,7 @@ import (
 )
 
 var dbServer database.DBServiceInterface
+
 //var conn redis.Conn
 //var hubServer *noti.Hub
 
@@ -23,18 +24,22 @@ func init() {
 	//go hubServer.Run()
 
 	getZhihuDaily()
+	//fmt.Println(dbServer.GetArticleByArticle(1))
 }
 
-func getZhihuDaily()  {
+func getZhihuDaily() {
 	ref := script.GetLatestEssay()
-	//for _,x := range ref {
-		ok, err := dbServer.CreateArticle(ref[0])
+
+	//fmt.Println(ref[0])
+
+	for _, x := range ref {
+		ok, err := dbServer.CreateArticle(x)
 		if err != nil {
 			fmt.Println(err)
-			//continue
+			continue
 		}
 		if !ok {
-			//continue
+			continue
 		}
-	//}
+	}
 }

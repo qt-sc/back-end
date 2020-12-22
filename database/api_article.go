@@ -1,6 +1,7 @@
 package  database
 
 import (
+	"github.com/qt-sc/server/lib"
 	"github.com/qt-sc/server/model"
 )
 
@@ -57,6 +58,9 @@ func (dbservice *DBService) GetArticleByArticle(article_id int64) (model.Article
 
 //CreateArticle 创建文章
 func (dbservice *DBService) CreateArticle(article model.Article) (bool, error) {
+
+	article.Title = lib.RemoveNonBmpUnicode(article.Title)
+	article.Content = lib.RemoveNonBmpUnicode(article.Content)
 
 	if err := db.Table("article").Create(&article).Error; err != nil {
 		return false, err
