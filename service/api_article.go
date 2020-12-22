@@ -164,5 +164,19 @@ func LikeArticle(w http.ResponseWriter, r *http.Request) {
 func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	
+	r.ParseForm()
+	idstr := r.PostFormValue("id")
+	article_id, err := strconv.Atoi(idstr)
+	if err != nil {
+		log.Fatal("string to int fail", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
+	_, err = dbServer.UpdateArticleContent(article_id, r.PostFormValue("content"))
+	if err != nil {
+		log.Fatal("Fail to update article content", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
 	w.WriteHeader(http.StatusOK)
 }
