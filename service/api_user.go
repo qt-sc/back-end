@@ -23,13 +23,13 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	
 	url := r.RequestURI
 	idstr := lib.GetFollowParameter(url, "users")
-	id, err := strconv.Atoi(idstr)
+	user_id, err := strconv.Atoi(idstr)
 	if err != nil {
 		log.Fatal("string to int fail", err)
 		w.WriteHeader(http.StatusNotFound)
 	}
 
-	_, err = dbServer.DeleteUser(int64(id))
+	_, err = dbServer.DeleteUser(int64(user_id))
 	if err != nil {
 		log.Fatal("Fail to delete user by ID", err)
 		w.WriteHeader(http.StatusNotFound)
@@ -45,21 +45,12 @@ func GetSignupPage(w http.ResponseWriter, r *http.Request) {
 
 func GetUserInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	
-	//url := r.RequestURI
-	//idstr := lib.GetFollowParameter(url, "users")
-	//id, err := strconv.Atoi(idstr)
-	//if err != nil {
-	//	log.Fatal("string to int fail", err)
-	//	w.WriteHeader(http.StatusNotFound)
-	//}
-
 
 	username, err := r.Cookie("username")
 	if err != nil {
 		log.Println("获取cookie失败")
 	}
-	//user, err := dbServer.GetOneUser(int64(id))
+
 	user, err := dbServer.GetOneUser(username.Value)
 	if err != nil {
 		log.Fatal("Fail to get user by ID", err)
@@ -84,14 +75,14 @@ func GetUserPage(w http.ResponseWriter, r *http.Request) {
 func GetUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	
-	alluser, err := dbServer.GetAllUser()
+	users, err := dbServer.GetAllUser()
 	if err != nil {
 		log.Fatal("Fail to get all users", err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
-	msg, err := json.Marshal(alluser)
+	msg, err := json.Marshal(users)
 	if err != nil {
 		log.Fatal("JSON Marshal fail.", err)
 		w.WriteHeader(http.StatusNotFound)
