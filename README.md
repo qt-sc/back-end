@@ -16,7 +16,6 @@ the back end for zhihu_coffee
 	- [服务接口](#服务接口)
 	- [数据获取脚本](#数据获取脚本)
 	- [鉴权模块](#鉴权模块)
-	- [article](#article)
 - [测试](#测试)
 	- [鉴权模块测试](#鉴权模块测试)
 		- [注册接口：/users/signup](#注册接口userssignup)
@@ -167,31 +166,6 @@ func UserSignup(w http.ResponseWriter, r *http.Request) {...}
 ### 鉴权模块
 
 
-
-### article
-
-```go
-type Article struct {
-
-	Id int64 `json:"id,omitempty" gorm:"id"`
-
-	Title string `json:"title,omitempty" gorm:"title"`
-
-	ReadNum int64 `json:"readNum,omitempty" gorm:"read_num"`
- 
-	LikeNum int64 `json:"likeNum,omitempty" gorm:"like_num"`
- 
-	Content string `json:"content,omitempty" gorm:"type:text;content"`
-
-	UserID int64 `json:"user_id,omitempty" gorm:"user_id"`
-
-	Replies []Reply `json:"replies,omitempty" gorm:"replies"`
- 
-	Tags []Tag `json:"tags,omitempty" gorm:"tags;many2many:article_tags`
-
-	Url string `json:"url,omitempty" gorm:"url"`
-}
-```
 
 ## 测试
 
