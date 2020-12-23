@@ -193,4 +193,11 @@ var routes = Routes{
 		"/users/signup",
 		service.UserSignup,
 	},
+
+	Route{
+		"GetAllArticles",
+		strings.ToUpper("Get"),
+		"/api/articles",
+		service.GetAllArticles,
+	},
 }

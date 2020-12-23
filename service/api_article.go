@@ -11,6 +11,25 @@ import (
 	"github.com/qt-sc/server/model"
 )
 
+func GetAllArticles(w http.ResponseWriter, r *http.Request)  {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
+	articleList, err := dbServer.GetAllArticle()
+	if err != nil {
+		log.Fatal("Fail to get all article", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+
+	msg, err := json.Marshal(articleList)
+	if err != nil {
+		log.Fatal("JSON Marshal fail.", err)
+		w.WriteHeader(http.StatusNotFound)
+	}
+	w.Write(msg)
+
+	w.WriteHeader(http.StatusOK)
+}
+
 func CreateArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	
