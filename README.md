@@ -165,7 +165,13 @@ func UserSignup(w http.ResponseWriter, r *http.Request) {...}
 
 ### 鉴权模块
 
+1.使用通用的做法，前端向后端发送json数据，解码完成注册和登录。
 
+2.使用中间件，思想类似java中的拦截器，所有应当鉴权的api都在中间件完成鉴权再执行逻辑处理函数，鉴权失败则返回。
+
+3.使用白名单的机制存储token。即，每当用户登录时，颁发一个token，并把token以键值的方式存在redis，每当做token校验时，还需去redis查有没有这个token，有则有效。当用户登出时，从redis删除这个token。
+
+为什么不考虑黑名单？因为黑名单是会膨胀的，而白名单始终存储当前有效的token，整体量不会很大。
 
 ## 测试
 
@@ -175,13 +181,15 @@ func UserSignup(w http.ResponseWriter, r *http.Request) {...}
 
 #### 注册接口：/users/signup
 
-![image-20201222142407791](img/image-20201222142407791.png)
+header中选择Content-Type为application/json，然后发送数据：
+
+![image-20201223122829707](img/image-20201223122829707.png)
 
 可见信息能够成功记录，注册成功。
 
 #### 登录接口：/users/login
 
-![image-20201222143153846](img/image-20201222143153846.png)
+![image-20201223125623649](img/image-20201223125623649.png)
 
 可见用户用相应的用户名和密码登录，能够成功响应，获取相应的cookie。查看redis也能确定多了一条token记录：
 

@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -99,13 +100,25 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 	// TODO：登录相关的非鉴权逻辑
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	body, _ := ioutil.ReadAll(r.Body)
+	defer r.Body.Close()
 
-	var requestUser model.User
-	json.Unmarshal(body, requestUser)
+	fmt.Println("body: ", string(body))
+	//var requestUser model.User
+	var requestUser = struct {
+		Name string `json:"name,omitempty" gorm:"name"`
+		Password string `json:"password,omitempty" gorm:"password"`
+	}{}
+
+	err := json.Unmarshal(body, &requestUser)
+	if err != nil{
+		log.Println("解析请求体失败: ", err)
+	}
+
+	fmt.Println("requestUser: ", requestUser)
 	username := requestUser.Name
 	user, err := dbServer.GetOneUser(username)
 	if err != nil {
-		log.Println("获取用户失败")
+		log.Println("获取用户失败: ")
 		return
 	}
 
@@ -154,6 +167,7 @@ func UserLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Set-Cookie", cookie2.String())
 	w.Header().Add("Set-Cookie", cookie3.String())
 
+	log.Println("登录成功，已设置cookie")
 }
 
 func UserLogout(w http.ResponseWriter, r *http.Request) {
